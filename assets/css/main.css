@@ -3,18 +3,193 @@
   src: url(../font/komika-regular.woff) format('woff');
 }
 
+
+
 body {
-  background: #719323;
+  background: #71953E;
+  font-family: "komika";
 }
 
-.hh-top {
-  background-image: url('../images/hh-top.png');
+.bg-top {
+  background-image: url('../images/objects/hh-top.png');
   background-repeat: no-repeat;
   background-size: contain;
+  background-position: center top;
+  width: 100vw;
+  height: 50vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -5000;
+}
+
+.house {
+  border: solid 1px red;
+  background-image: url('../images/objects/house.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center top;
+
+  width: 64%;
+  height: 80%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: -4900;
+}
+
+.middle-container {
+
+  width: 35vh;
+  height: 50%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: -4800;
+}
+
+li:hover {
+  color: aqua;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding-left: 1em;
+  font-size: 2vh;
+  font-weight: bold;
+}
+li:before {
+  content: ">"; /* FontAwesome Unicode */
+  display: inline-block;
+  margin-left: -1.3em; /* same as padding-left set on li */
+  width: .7em; /* same as padding-left set on li */
+}
+
+.door {
+  border: solid 1px red;
+  background-image: url('../images/objects/door.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center top;
+
+  width: 35vh;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: -4800;
+  transition: all .3s ease;
+}
+
+.door:hover{
+  filter: drop-shadow(0 0 0.75rem white);
+}
+
+.categories {
+
+  width: 35vh;
+  height: 80%;
+  position: absolute;
+  top: 20%;
+  left: 15%;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: -4800;
+  transition: all .3s ease;
+}
+
+
+.start {
+  border: solid 1px red;
+  font-size: 5vh;
+  color: #F9ED01;
+  text-align: center;
+  
+  width: 100%;
+  height: 20%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: -4750;
+
+  transition: color .3s ease;
+}
+
+.start:hover{
+  color: white;
+  cursor: pointer;
+}
+
+.left-hatch {
+  border: solid 1px red;
+  background-image: url('../images/objects/closedhatch-left.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center top;
+  
+  width: 80%;
+  height: 100%;
+  position: absolute;
+  top: -30%;
+  left: -210%;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: -4800;
+}
+
+.right-hatch {
+  border: solid 1px red;
+  background-image: url('../images/objects/closedhatch-right.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center top;
+  
+  width: 80%;
+  height: 100%;
+  position: absolute;
+  top: -30%;
+  left: 115%;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: -4800;
+}
+
+.hoverr {
+  background-image: url('../images/06_chickencoop-1.0_Selected\ R.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center top;
   width: 100vw;
   height: 100vh;
   position: absolute;
   top: 0;
   left: 0;
-  z-index: -5000;
+  z-index: -4000;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }

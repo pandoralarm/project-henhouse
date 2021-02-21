@@ -12,14 +12,82 @@
     <link rel="stylesheet" href="assets/css/main.css" />
     <!-- Vue JS 2.6x CDN -->
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <!-- JQuery 3.5.x CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
 </head>
 <body>
 
-  <section id="background">
+
+  <section id="app">
     <div class="container-fluid">
-      <background class="hh-top"></background>
-    </div>  
+      <div class="bg-top">
+        
+      </div>
+
+      <div class="container">
+        <div class="house">
+  
+        <transition name="fade">
+          <div class="middle-container">
+
+
+            <div v-if="door" class="door">
+              <div v-on:click="door = false" class="start">
+                {{ message }}
+              </div>
+            </div>
+
+            <div v-if="!door" class="categories">
+              <ul>
+                <li>Sports, Games, recreational</li>
+                <li>Technology & Science</li>
+                <li>Arts & Cultural</li>
+                <li>Career & Family</li>
+                <li>Health & Medical</li>
+                <li>Lifestyle & hobby, leisure</li>
+                <li>Politics & society</li>
+                <li>Financial and economics</li>
+                <li>Pets, Animals & Outdoors</li>
+                <li>Spiritual, Philosophy, religion</li>
+                
+                
+              </ul>
+            </div>
+            <div class="left-hatch">
+            
+            </div>
+            <div class="right-hatch">
+            
+            </div>
+
+
+          </div>
+  
+          
+        </transition>
+
+  
+        </div>
+      </div>
+    </div>
+    
   </section>
+  
+
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        door: true,
+        side: 0,
+        message: "START",
+      }, 
+      methods: {
+
+      }
+    })
+  </script>
 
 </body>
 </html>
