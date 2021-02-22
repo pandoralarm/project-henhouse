@@ -7,19 +7,25 @@
   <title>Welcome to the Henhouse!</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="assets/css/main.css" />
     <!-- Vue JS 2.6x CDN -->
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <!-- JQuery 3.5.x CDN -->
     <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
 
+  <section>
+    <div class="bg-top">
 
-  <section id="app">
-    <div class="container-fluid">
+    </div>
+  </section>
+  <section v-if="render" id="app" class="d-none d-md-block">
+    <div class="container-fluid" >
       <div class="bg-top">
         
       </div>
@@ -27,7 +33,6 @@
       <div v-if="main" class="container">
         <div class="house">
   
-        <transition name="fade">
           <div class="middle-container">
 
             <div class="billboard">
@@ -132,31 +137,93 @@
 
             </div>
 
-            <div class="lpost">
-
+            <div v-if="leftnav || rightnav" v-on:click="leftnav = false; rightnav = false" class="overlay"></div>
+            
+            <div v-on:click="leftnav = !leftnav" class="lpost">
             </div>
 
-            <div class="rpost">
-              
+            <div v-on:click="rightnav = !rightnav" class="rpost">
             </div>
-
-
 
           </div>
   
           
-        </transition>
 
   
         </div>
       </div>
 
-      <div v-on:click="window = false; main = true;" v-if="window" class="hh-window">
+      <div v-on:click="window = false; main = true; start = true; billboard = 'Start a new opinion'" v-if="window" class="hh-window">
         <div class="pretext">
           <p>Chicken Ranch</p>
           <p>Design Under Construction</p>
         </div>
       </div>
+
+      <transition name="slideleft">
+        <div  v-if="leftnav" class="left-side d-block">
+
+          <nav class="left-menu">
+            <a href="#" class="menu-item"><div class="compass"></div></a>
+            <a href="#" class="menu-item"><div v-if="logged" class="logged"></div><div v-if="!logged" class="notlogged"></div></a>
+            <a href="#" class="menu-item"><div class="search"></div></a>
+            <a href="#" class="menu-item"><div class="filter"></div></a>
+            <a href="#" class="menu-item"><div class="sort"></div></a>
+            <a href="#" class="menu-item"><div class="all"></div></a>
+          </nav>
+  
+          <div class="popular-opinions">
+            <h4 class="text-center">
+              Most Popular Opinions
+            </h4>
+  
+            <template>
+              <div class="list-opinion">
+                <div class="list-profile">
+                </div>
+                <div class="list-opinion-text">
+                  {{ opinion }}
+                </div>
+              </div>
+            </template>
+  
+  
+          </div>
+        </div>
+      </transition>
+
+      <transition name="slideright">
+        <div  v-if="rightnav" class="right-side d-block">
+
+          <nav class="-menu">
+            <a href="#" class="menu-item"><div class="compass"></div></a>
+            <a href="#" class="menu-item"><div v-if="logged" class="logged"></div><div v-if="!logged" class="notlogged"></div></a>
+            <a href="#" class="menu-item"><div class="search"></div></a>
+            <a href="#" class="menu-item"><div class="filter"></div></a>
+            <a href="#" class="menu-item"><div class="sort"></div></a>
+            <a href="#" class="menu-item"><div class="all"></div></a>
+          </nav>
+  
+          <div class="popular-opinions">
+            <h4 class="text-center">
+              Most Popular Opinions
+            </h4>
+  
+            <template>
+              <div class="list-opinion">
+                <div class="list-profile">
+                </div>
+                <div class="list-opinion-text">
+                  {{ opinion }}
+                </div>
+              </div>
+            </template>
+  
+  
+          </div>
+        </div>
+      </transition>
+
     </div>
     
   </section>
@@ -167,21 +234,41 @@
     var app = new Vue({
       el: '#app',
       data: {
+        render: true,
         main: true,
         window: false,
         door: true,
-        side: 0,
+        leftnav: false,
+        rightnav: false,
         start: true,
         cat: false,
         sub: false,
         topic: false,
         lastcat: false,
         lastsub: false,
+        logged: false,
         billboard: "State a new opinion",
+        opinion: "State a new opinion",
+        image: 'assets'
 
-      }, 
+      },
+      mounted() {
+        window.addEventListener(
+          "orientationchange",
+          this.handleOrientationChange
+        );
+      },
       methods: {
-
+        handleOrientationChange() {
+          const orientation = window.screen.orientation.type
+          if (orientation === "portrait-primary") {
+            // portrait mode
+            render = false;
+          } else if (orientation === "landscape-primary") {
+            // landscape mode
+            render = true;
+          }
+        }
       }
     })
   </script>
