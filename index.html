@@ -24,41 +24,122 @@
         
       </div>
 
-      <div class="container">
+      <div v-if="main" class="container">
         <div class="house">
   
         <transition name="fade">
           <div class="middle-container">
 
+            <div class="billboard">
+              {{ billboard }}
+            </div>
 
             <div v-if="door" class="door">
-              <div v-on:click="door = false" class="start">
-                {{ message }}
+              <div v-if="start" v-on:click="door = false; billboard = 'Welcome to the chickencoop! Join to debate!'" class="start">
+                START
               </div>
             </div>
 
             <div v-if="!door" class="categories">
-              <ul>
-                <li>Sports, Games, recreational</li>
-                <li>Technology & Science</li>
-                <li>Arts & Cultural</li>
-                <li>Career & Family</li>
-                <li>Health & Medical</li>
-                <li>Lifestyle & hobby, leisure</li>
-                <li>Politics & society</li>
-                <li>Financial and economics</li>
-                <li>Pets, Animals & Outdoors</li>
-                <li>Spiritual, Philosophy, religion</li>
-                
-                
-              </ul>
+
+              <div v-on:click="door = true; start = false; " class="categories-list">
+                <ul >
+                  <li v-on:click="cat = 1">Sports, Games, recreational</li>
+                  <li v-on:click="cat = 2">Technology & Science</li>
+                  <li v-on:click="cat = 3">Arts & Cultural</li>
+                  <li v-on:click="cat = 4">Career & Family</li>
+                  <li v-on:click="cat = 5">Health & Medical</li>
+                  <li v-on:click="cat = 6">Lifestyle & hobby, leisure</li>
+                  <li v-on:click="cat = 7">Politics & society</li>
+                  <li v-on:click="cat = 8">Financial and economics</li>
+                  <li v-on:click="cat = 9">Pets, Animals & Outdoors</li>
+                  <li v-on:click="cat = 10">Spiritual, Philosophy, religion</li>
+                </ul>
+              </div>
+
+
+                            
+              <div v-on:click="door = true; start = true; billboard = 'State a new opinion';" class="categories-back">
+
+              </div>
+
             </div>
-            <div class="left-hatch">
+
+
+
+            <div v-if="!cat" class="left-hatch">
+
+            </div>
+
+            <div v-if="cat" class="left-hatch-open">
+              <div v-on:click="door = true; start = false; lastcat = cat; cat = false;" class="sub-list">
+
+                <template>
+                  <ul v-if="cat === 1">
+                    <li v-on:click="sub = 1">Soccer</li>
+                    <li v-on:click="sub = 2">Volleyball</li>
+                    <li v-on:click="sub = 3">Hockey</li>
+                    <li v-on:click="sub = 4">Rugby</li>
+                    <li v-on:click="sub = 5">Karate</li>
+                    <li v-on:click="sub = 6">Judo</li>
+                    <li v-on:click="sub = 7">Billiards, Snooker</li>
+                    <li v-on:click="sub = 8">Basketball</li>
+                    <li v-on:click="sub = 9">Korfbal</li>
+                    <li v-on:click="sub = 10">American Footbal</li>
+                  </ul>
+                </template>
+
+              </div>
+
+
+                            
+              <div v-on:click="door = false;  cat = false" class="cat-back">
+
+              </div>
+
+            </div>
+
+            
+            <div v-if="!sub" class="right-hatch">
             
             </div>
-            <div class="right-hatch">
-            
+
+            <div v-if="sub" class="right-hatch-open">
+              <div v-on:click="door = true; start = false; lastsub = sub; sub = false; window = true; main = false;" class="topic-list">
+
+                <template>
+                  <ul v-if="sub === 1">
+                    <li v-on:click="topic = 1">Soccer</li>
+                    <li v-on:click="topic = 2">Volleyball</li>
+                    <li v-on:click="topic = 3">Hockey</li>
+                    <li v-on:click="topic = 4">Rugby</li>
+                    <li v-on:click="topic = 5">Karate</li>
+                    <li v-on:click="topic = 6">Judo</li>
+                    <li v-on:click="topic = 7">Billiards, Snooker</li>
+                    <li v-on:click="topic = 8">Basketball</li>
+                    <li v-on:click="topic = 9">Korfbal</li>
+                    <li v-on:click="topic = 10">American Footbal</li>
+                  </ul>
+                </template>
+
+              </div>
+
+
+                            
+              <div v-on:click="cat = lastcat; sub = false;" class="sub-back">
+
+              </div>
+
             </div>
+
+            <div class="lpost">
+
+            </div>
+
+            <div class="rpost">
+              
+            </div>
+
 
 
           </div>
@@ -67,6 +148,13 @@
         </transition>
 
   
+        </div>
+      </div>
+
+      <div v-on:click="window = false; main = true;" v-if="window" class="hh-window">
+        <div class="pretext">
+          <p>Chicken Ranch</p>
+          <p>Design Under Construction</p>
         </div>
       </div>
     </div>
@@ -79,9 +167,18 @@
     var app = new Vue({
       el: '#app',
       data: {
+        main: true,
+        window: false,
         door: true,
         side: 0,
-        message: "START",
+        start: true,
+        cat: false,
+        sub: false,
+        topic: false,
+        lastcat: false,
+        lastsub: false,
+        billboard: "State a new opinion",
+
       }, 
       methods: {
 
