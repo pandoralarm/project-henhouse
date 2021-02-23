@@ -172,17 +172,17 @@
             <a href="#" class="menu-item"><div class="all"></div></a>
           </nav>
   
-          <div class="popular-opinions">
+          <div   class="popular-opinions">
             <h4 class="text-center">
               Most Popular Opinions
             </h4>
   
             <template>
-              <div class="list-opinion">
+              <div v-for="(value, opinion) in opinions" class="list-opinion">
                 <div class="list-profile">
                 </div>
                 <div class="list-opinion-text">
-                  {{ opinion }}
+                  {{ value.opinion }}
                 </div>
               </div>
             </template>
@@ -195,32 +195,27 @@
       <transition name="slideright">
         <div  v-if="rightnav" class="right-side d-block">
 
-          <nav class="-menu">
-            <a href="#" class="menu-item"><div class="compass"></div></a>
-            <a href="#" class="menu-item"><div v-if="logged" class="logged"></div><div v-if="!logged" class="notlogged"></div></a>
-            <a href="#" class="menu-item"><div class="search"></div></a>
-            <a href="#" class="menu-item"><div class="filter"></div></a>
-            <a href="#" class="menu-item"><div class="sort"></div></a>
-            <a href="#" class="menu-item"><div class="all"></div></a>
-          </nav>
-  
-          <div class="popular-opinions">
+
+          <div class="podium"></div>
+
+          <div class="popular-users">
             <h4 class="text-center">
-              Most Popular Opinions
+              Most Popular Users
             </h4>
   
             <template>
-              <div class="list-opinion">
-                <div class="list-profile">
+              <div v-for="(value, user) in users" class="list-users">
+                <div class="list-users-pos">
+                  {{ value.pos }}
                 </div>
-                <div class="list-opinion-text">
-                  {{ opinion }}
+                <div class="list-users-profile">
+                </div>
+                <div class="list-users-text">
+                  {{ value.user }}
                 </div>
               </div>
             </template>
-  
-  
-          </div>
+          
         </div>
       </transition>
 
@@ -248,8 +243,49 @@
         lastsub: false,
         logged: false,
         billboard: "State a new opinion",
-        opinion: "State a new opinion",
-        image: 'assets'
+        image: 'assets',
+
+      
+        opinions: [
+          {
+            pos: 1,
+            opinion: 'State a new opinion',
+            agree: 65,
+            disagree: 35,
+          },
+          {
+            pos: 1,
+            opinion: 'Opinion Position 2',
+            agree: 65,
+            disagree: 35,
+          },
+          {
+            pos: 1,
+            opinion: 'Opinion Position 3',
+            agree: 65,
+            disagree: 35,
+          }
+        ],
+
+        users: [
+        {
+          pos: 1,
+          user: 'Rudd',
+          votes: 1098,
+        },
+        {
+          pos: 2,
+          user: 'Petra',
+          votes: 954,
+        },
+        {
+          pos: 3,
+          user: 'Gus',
+          votes: 854,
+        }
+
+
+      ],
 
       },
       mounted() {

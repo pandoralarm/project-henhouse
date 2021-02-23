@@ -59,6 +59,21 @@ body {
   margin: 0 5px 0 5px;
 }
 
+.podium{
+  background-image: url('../images/objects/podium.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+
+  height: 10vh;
+  position: relative;
+  top: 0;
+  right: 0;
+  margin: 10px auto;
+  z-index: 1000;
+}
+
 
 .compass{  
   background-image: url('../images/objects/nav/compass.png');
@@ -586,6 +601,22 @@ li:before {
   border: groove 2px black;
 }
 
+.popular-users{
+  
+  font-weight: 800;
+  width: 90%;
+  min-height: 50%;
+  background-color: #9BD087;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border-radius: 8px;
+  border: groove 2px black;
+}
+
 .list-opinion{
   background-color: #F1F4C6;
   width: 95%;
@@ -626,6 +657,69 @@ li:before {
   margin: auto;
 }
 
+
+.list-users{
+  background-color: #F1F4C6;
+  width: 95%;
+  height: 8vh;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 2px auto;
+  border-radius: 8px;
+  border: groove 2px black;
+}
+
+.list-users-pos{
+  display: inline-block;
+  background-image: url('../images/objects/list-profile-number.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  font-size: 125%;
+  line-height: 2;
+  text-align: center;
+
+  width: 20%;
+  height: 90%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 1% 1%;
+
+}
+
+.list-users-profile{
+  display: inline-block;
+  background-color: #E4F4F5;
+  border-radius: 8px;
+  border: groove 2px black;
+  width: 20%;
+  height: 90%;
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 0;
+  bottom: 0;
+  margin: 1% 1%;
+
+}
+
+.list-users-text{
+  font-size: 100%;
+  height: 50%;
+  position: absolute;
+  top: 0;
+  left: 45%;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
 
 .slideleft-enter-active {
   transition: all .5s ease;
