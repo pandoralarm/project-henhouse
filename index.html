@@ -137,7 +137,7 @@
 
             </div>
 
-            <div v-if="leftnav || rightnav" v-on:click="leftnav = false; rightnav = false" class="overlay"></div>
+            <div v-if="leftnav || rightnav" v-on:click=" zoom_left = false; zoom_right = false; leftnav = false;  rightnav = false;" class="overlay"></div>
             
             <div v-on:click="leftnav = !leftnav" class="lpost">
             </div>
@@ -172,17 +172,43 @@
             <a href="#" class="menu-item"><div class="all"></div></a>
           </nav>
   
-          <div   class="popular-opinions">
-            <h4 class="text-center">
+          <div class="popular-opinions">
+            <h4 class="text-center zoom-base-left">
               Most Popular Opinions
             </h4>
-  
-            <template>
-              <div v-for="(value, opinion) in opinions" class="list-opinion">
+            
+            <transition name="slideleft">
+              <template>
+                <div v-if="zoom_left" v-on:click.self="zoom_left = false" class="zoom_left">
+                  
+                  <div v-for="n in 2" class="zoomed">
+                    <div class="profile">
+                    </div>
+                    <div class="text">
+                      {{ opinions[zoom_start + n].opinion }}
+                    </div>
+                    <div class="gauge">
+                      <span class="agree">65</span>
+                      <span class="disagree">35</span>
+                    </div>
+                  </div>
+
+
+                  <div class="scroll">
+                    <div v-on:click="scrollup" class="up"></div>
+                    <div v-on:click="scrolldown" class="down"></div>
+                  </div>
+
+                </div>
+              </template>
+            </transition>
+
+            <template  v-for="(value, pos) in opinions">
+              <div v-on:click="zoomin_left(value.pos) " class="list-opinion">
                 <div class="list-profile">
                 </div>
                 <div class="list-opinion-text">
-                  {{ value.opinion }}
+                  {{ value.opinion }} 
                 </div>
               </div>
             </template>
@@ -192,19 +218,55 @@
         </div>
       </transition>
 
+
       <transition name="slideright">
         <div  v-if="rightnav" class="right-side d-block">
 
-
           <div class="podium"></div>
-
           <div class="popular-users">
             <h4 class="text-center">
               Most Popular Users
             </h4>
-  
+            
+            <transition name="slideright">
+              <template>
+                <div v-if="zoom_right" v-on:click.self="zoom_right = false" class="zoom_right">
+          
+                  <div v-for="n in 2" class="zoomed">
+                    <div class="pos">
+                      {{ users[zoom_start + n].pos }}
+                    </div>
+                    <div class="list-user">
+                      <div class="profile">
+                        <div class="username">
+                          {{ users[zoom_start + n].user }}
+                        </div>
+                        <div v-if="users[zoom_start + n].badge" class="badge"></div>
+                        <div v-if="users[zoom_start + n].medal" class="medal"></div>
+                      </div>
+                      <div class="counter">
+                        <div class="number">
+                          {{ users[zoom_start + n].votes }}
+                        </div>
+                      </div>
+                      <div class="member"> 
+                        Member since {{ users[zoom_start + n].date }}
+                      </div>
+                    </div>
+        
+                  </div>
+                  
+                  <div class="scroll">
+                    <div v-on:click="scrollupr" class="scrollup"></div>
+                    <div v-on:click="scrolldownr" class="scrolldown"></div>
+                  </div>
+        
+                </div>
+              </template>
+            </transition>
+
             <template>
-              <div v-for="(value, user) in users" class="list-users">
+              <div v-for="(value, user) in users" v-on:click="zoomin_right(value.pos)" class="list-users">
                 <div class="list-users-pos">
                   {{ value.pos }}
                 </div>
@@ -215,9 +277,12 @@
                 </div>
               </div>
             </template>
-          
+  
+  
+          </div>
         </div>
       </transition>
+
 
     </div>
     
@@ -241,7 +306,12 @@
         topic: false,
         lastcat: false,
         lastsub: false,
-        logged: false,
+        logged: true,
+        zoom_left: false,
+        zoom_right: false,
+        selected_pos: 0,
+        zoom_start: 0,
+        zoom_end: 1,
         billboard: "State a new opinion",
         image: 'assets',
 
@@ -254,13 +324,13 @@
             disagree: 35,
           },
           {
-            pos: 1,
+            pos: 2,
             opinion: 'Opinion Position 2',
             agree: 65,
             disagree: 35,
           },
           {
-            pos: 1,
+            pos: 3,
             opinion: 'Opinion Position 3',
             agree: 65,
             disagree: 35,
@@ -272,16 +342,25 @@
           pos: 1,
           user: 'Rudd',
           votes: 1098,
+          medal: true,
+          badge: true,
+          date: '21-02-2020',
         },
         {
           pos: 2,
           user: 'Petra',
           votes: 954,
+          medal: false,
+          badge: true,
+          date: '02-01-2020',
         },
         {
           pos: 3,
           user: 'Gus',
           votes: 854,
+          medal: true,
+          badge: false,
+          date: '22-05-2020',
         }
 
 
@@ -304,7 +383,55 @@
             // landscape mode
             render = true;
           }
-        }
+        },
+
+        zoomin_left(n) {
+
+          this.selected_pos = n;
+          this.zoom_start = this.selected_pos-2;
+          this.zoom_end = this.selected_pos-1;
+          this.zoom_left = true;
+
+          current = $(window).height();
+          $('.zoom_left').css('top', current + ( 45 * (this.selected_pos - 1))+'px');
+         
+        },
+
+        zoomin_right(n) {
+
+          this.selected_pos = n;
+          this.zoom_start = this.selected_pos-2;
+          this.zoom_end = this.selected_pos-1;
+          this.zoom_right = true;
+
+          current = $(window).height();
+          $('.zoom_right').css('top', current + ( 45 * (this.selected_pos - 1))+'px');
+
+        },
+
+        scrollup() {
+          prevtopl = parseInt($('.zoom_left').css('top'));
+          console.log($('.zoom_left').animate({top: prevtopl-45+'px'}));
+          this.zoomin_left(this.selected_pos -1);
+        },
+
+        scrolldown() {
+          prevtopl = parseInt($('.zoom_left').css('top'));
+          console.log($('.zoom_left').animate({top: prevtopl+45+'px'}));
+          this.zoomin_left(this.selected_pos +1);
+         },
+
+        scrollupr() {
+          prevtopr = parseInt($('.zoom_right').css('top'));
+          console.log($('.zoom_right').animate({top: prevtopr-45+'px'}));
+          this.zoomin_right(this.selected_pos -1);
+        },
+
+        scrolldownr() {
+          prevtopr = parseInt($('.zoom_right').css('top'));
+          console.log($('.zoom_right').animate({top: prevtopr+45+'px'}));
+          this.zoomin_right(this.selected_pos +1);
+        },
       }
     })
   </script>
