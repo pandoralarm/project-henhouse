@@ -163,15 +163,50 @@
       <transition name="slideleft">
         <div  v-if="leftnav" class="left-side d-block">
 
-          <nav class="left-menu">
-            <a href="#" class="menu-item"><div class="compass"></div></a>
-            <a href="#" class="menu-item"><div v-if="logged" class="logged"></div><div v-if="!logged" class="notlogged"></div></a>
-            <a href="#" class="menu-item"><div class="search"></div></a>
-            <a href="#" class="menu-item"><div class="filter"></div></a>
-            <a href="#" class="menu-item"><div class="sort"></div></a>
-            <a href="#" class="menu-item"><div class="all"></div></a>
-          </nav>
+          <!-- <nav class="left-menu border">
+            <div  v-on:click="compass_sub = !compass_sub"  class="menu-item">
+              
+            </div>
+            <div class="menu-item">
+            </div>
+            <div class="menu-item">
+            </div>
+            <div class="menu-item">
+            </div>
+            <div class="menu-item">
+            </div>
+            <div class="menu-item">
+            </div>
+          </nav> -->
+
+          <div v-on:click="compass_sub = !compass_sub" class="compass"></div>
+          <div v-on:click="user_sub = !user_sub" v-if="logged" class="logged"></div>
+          <div v-on:click="logged = !logged;" v-if="!logged" class="notlogged"></div>  
+          <div class="search"></div>
+          <div class="filter"></div>
+          <div class="sort"></div>
+          <div class="all"></div>
   
+          <transition name="fade">
+            <div v-if="compass_sub" class="compassnav">
+              <a href="#" class="home"></a>
+              <a href="#" class="ranch"></a>
+              <a href="#" class="battery"></a>
+              <a href="#" class="about"></a>
+              <a href="#" class="rules"></a>
+            </div>
+          </transition>
+
+          <transition name="fade">
+            <div v-if="user_sub" class="usernav">
+              <a href="#" class="profile"></a>
+              <a href="#" class="chats"></a>
+              <a href="#" class="notifications"></a>
+              <a href="#" class="add"></a>
+              <a href="#" v-on:click="logged = !logged; user_sub = !user_sub" class="logoff"></a>
+            </div>
+          </transition>
+          
           <div class="popular-opinions">
             <h4 class="text-center zoom-base-left">
               Most Popular Opinions
@@ -299,6 +334,8 @@
         window: false,
         door: true,
         leftnav: false,
+        compass_sub: false,
+        user_sub: false,
         rightnav: false,
         start: true,
         cat: false,
@@ -306,7 +343,7 @@
         topic: false,
         lastcat: false,
         lastsub: false,
-        logged: true,
+        logged: false,
         zoom_left: false,
         zoom_right: false,
         selected_pos: 0,
