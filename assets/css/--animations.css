@@ -1,0 +1,47 @@
+/* TRANSITIONS AND ANIMATIONS */
+
+.slideleft-enter-active {
+  transition: all .5s ease;
+}
+.slideleft-leave-active {
+  transition: all .5s ease;
+}
+.slideleft-enter, .slideleft-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(-100%);
+}
+
+.slideright-enter-active {
+  transition: all .5s ease;
+}
+.slideright-leave-active {
+  transition: all .5s ease;
+}
+.slideright-enter, .slideright-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(+100%);
+}
+
+.fade-enter-active {
+  transition: all .5s ease;
+}
+.fade-leave-active {
+  transition: all .5s ease;
+}
+.fade-enter, .fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(-10%);
+}
+
+.switch-enter-active {
+  transition: all .5s ease;
+}
+.switch-leave-active {
+  transition: all .5s ease;
+}
+.switch-enter, .switch-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: rotateY(180deg);
+}
