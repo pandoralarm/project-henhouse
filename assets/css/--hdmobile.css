@@ -610,7 +610,6 @@
     height: 25vw;
     width: 40vw;
     position: fixed;
-    top: 14%;
     left: 0;
     margin: 10px auto;
     z-index: -500;
@@ -843,7 +842,6 @@
     height: 25vw;
     width: 40vw;
     position: fixed;
-    top: 14%;
     right: 0;
     margin: 10px auto;
     z-index: -500;
@@ -1041,6 +1039,7 @@
 
   .scroll .down{
     height: 8%;
+    width: 8%;
     position: absolute;
     top: 50%;
     right: 5%;

@@ -31,13 +31,10 @@
     <div class="bg-top">
 
     </div>
-  </section><!-- 
-  <section v-if="render" id="app" class="d-none d-md-block"> -->
-  <section v-if="render" id="app" >
+  </section>
+  <div id="warning" class="warning-text">The device you are using is unsupported, try rotating the device!</div>
+  <section id="app" >
     <div class="container-fluid" >
-      <div class="bg-top">
-        
-      </div>
 
       <div v-if="main" class="container">
         <div class="house">
@@ -50,11 +47,13 @@
               {{ billboard }}
             </div>
 
-            <div v-if="door" class="door">
-              <div v-if="start" v-on:click="door = false; billboard = 'Welcome to the chickencoop! Join to debate!'" class="start">
-                START
+            <transition name="fader">
+              <div v-if="door" class="door">
+                <div v-if="start" v-on:click="door = false; billboard = 'Welcome to the chickencoop! Join to debate!'" class="start">
+                  START
+                </div>
               </div>
-            </div>
+            </transition>
 
             <div v-if="!door" class="categories">
               <div class="top">Select a category</div>
@@ -81,79 +80,86 @@
               </div>
 
             </div>
-
-            <div v-if="!cat" class="left-hatch">
-            </div>
-
-            <div v-if="cat" class="left-hatch-open">
-
-              
-              <div class="add-btn"></div>
-              <input type="text" class="add-input"></input>
-              <div class="top">Select</div>
-              <div v-on:click="door = true; start = false; lastcat = cat; cat = false;" class="sub-list">
-                
-                <template>
-                  <ul v-if="cat === 1">
-                    <li v-on:click="sub = 1">Soccer</li>
-                    <li v-on:click="sub = 2">Volleyball</li>
-                    <li v-on:click="sub = 3">Hockey</li>
-                    <li v-on:click="sub = 4">Rugby</li>
-                    <li v-on:click="sub = 5">Karate</li>
-                    <li v-on:click="sub = 6">Judo</li>
-                    <li v-on:click="sub = 7">Billiards, Snooker</li>
-                    <li v-on:click="sub = 8">Basketball</li>
-                    <li v-on:click="sub = 9">Korfbal</li>
-                    <li v-on:click="sub = 10">American Footbal</li>
-                  </ul>
-                </template>
-
+            <transition name="fader">
+              <div v-if="!cat" class="left-hatch">
               </div>
-
-
-                            
-              <div v-on:click="door = false;  cat = false" class="cat-back">
-
-              </div>
-
-            </div>
+            </transition>
 
             
-            <div v-if="!sub" class="right-hatch">
-            
-            </div>
+            <transition name="fader">
+              <div v-if="cat" class="left-hatch-open">
 
-            <div v-if="sub" class="right-hatch-open">
-
-              <div class="top">Select</div>
-              <div class="add-btn"></div>
-              <input type="text" class="add-input"></input>
-              <div v-on:click="door = true; start = false; lastsub = sub; sub = false; window = true; main = false;" class="topic-list">
                 
-                <template>
-                  <ul v-if="sub === 1">
-                    <li v-on:click="topic = 1">Soccer</li>
-                    <li v-on:click="topic = 2">Volleyball</li>
-                    <li v-on:click="topic = 3">Hockey</li>
-                    <li v-on:click="topic = 4">Rugby</li>
-                    <li v-on:click="topic = 5">Karate</li>
-                    <li v-on:click="topic = 6">Judo</li>
-                    <li v-on:click="topic = 7">Billiards, Snooker</li>
-                    <li v-on:click="topic = 8">Basketball</li>
-                    <li v-on:click="topic = 9">Korfbal</li>
-                    <li v-on:click="topic = 10">American Footbal</li>
-                  </ul>
-                </template>
+                <div class="add-btn"></div>
+                <input type="text" class="add-input"></input>
+                <div class="top">Select</div>
+                <div v-on:click="door = true; start = false; lastcat = cat; cat = false;" class="sub-list">
+                  
+                  <template>
+                    <ul v-if="cat === 1">
+                      <li v-on:click="sub = 1">Soccer</li>
+                      <li v-on:click="sub = 2">Volleyball</li>
+                      <li v-on:click="sub = 3">Hockey</li>
+                      <li v-on:click="sub = 4">Rugby</li>
+                      <li v-on:click="sub = 5">Karate</li>
+                      <li v-on:click="sub = 6">Judo</li>
+                      <li v-on:click="sub = 7">Billiards, Snooker</li>
+                      <li v-on:click="sub = 8">Basketball</li>
+                      <li v-on:click="sub = 9">Korfbal</li>
+                      <li v-on:click="sub = 10">American Footbal</li>
+                    </ul>
+                  </template>
+
+                </div>
+
+
+                              
+                <div v-on:click="door = false;  cat = false" class="cat-back">
+
+                </div>
 
               </div>
-                            
-              <div v-on:click="cat = lastcat; sub = false;" class="sub-back">
+            </transition>
+
+            <transition name="fader">
+              <div v-if="!sub" class="right-hatch"></div>
+            </transition>
+
+            <transition name="fader">
+              <div v-if="sub" class="right-hatch-open">
+
+                        
+                <div class="add-btn"></div>
+                <input type="text" class="add-input"></input>
+
+                <div class="top">Select</div>
+                <div v-on:click="door = true; start = false; lastsub = sub; sub = false; window = true; main = false;" class="topic-list">
+                  
+                  <template>
+                    <ul v-if="sub === 1">
+                      <li v-on:click="topic = 1">Soccer</li>
+                      <li v-on:click="topic = 2">Volleyball</li>
+                      <li v-on:click="topic = 3">Hockey</li>
+                      <li v-on:click="topic = 4">Rugby</li>
+                      <li v-on:click="topic = 5">Karate</li>
+                      <li v-on:click="topic = 6">Judo</li>
+                      <li v-on:click="topic = 7">Billiards, Snooker</li>
+                      <li v-on:click="topic = 8">Basketball</li>
+                      <li v-on:click="topic = 9">Korfbal</li>
+                      <li v-on:click="topic = 10">American Footbal</li>
+                    </ul>
+                  </template>
+
+                </div>
+                              
+                <div v-on:click="cat = lastcat; sub = false;" class="sub-back">
+
+                </div>
 
               </div>
+            </transition>
 
-            </div>
-
-            <div v-if="leftnav || rightnav" v-on:click=" zoom_left = false; zoom_right = false; leftnav = false;  rightnav = false;" class="overlay"></div>
+            <div v-if="leftnav || rightnav" v-on:click="defocus" class="overlay"></div>
             
             <div v-on:click="leftnav = !leftnav" class="lpost">
             </div>
@@ -169,26 +175,33 @@
         </div>
       </div>
 
-      <div v-on:click="window = false; main = true; start = true; billboard = 'Start a new opinion'" v-if="window" class="hh-window">
-        <div class="pretext">
-          <p>Chicken Ranch</p>
-          <p>Design Under Construction</p>
+      <transition name="slideleft">
+        <div v-on:click="window = false; main = true; start = true; billboard = 'Start a new opinion'" v-if="window" class="hh-window">
+          <div class="pretext">
+            <p>Chicken Ranch</p>
+            <p>Design Under Construction</p>
+          </div>
         </div>
-      </div>
+      </transition>
+
 
       <transition name="slideleft">
         <div  v-if="leftnav" class="left-side d-block">
 
-          <div v-on:click="compass_sub = !compass_sub" class="compass"></div>
-          <div v-on:click="user_sub = !user_sub" v-if="logged" class="logged"></div>
-          <div v-on:click="logged = !logged;" v-if="!logged" class="notlogged"></div>  
-          <div class="search"></div>
+          <div v-on:click.self="compassnav" class="compass"></div>
+          <transition name="switch">
+            <div v-on:click.self="usernav" v-if="logged" class="logged"></div>
+          </transition>
+          <transition name="switch">
+            <div v-on:click="logged = !logged;" v-if="!logged" class="notlogged"></div>  
+          </transition>
+           <div class="search"></div>
           <div class="filter"></div>
           <div class="sort"></div>
           <div class="all"></div>
   
           <transition name="fade">
-            <div v-if="compass_sub" class="compassnav">
+            <div v-if="navigation == 'compass'" class="compassnav">
               <a href="#" class="home"><span class="submenu-text">Home</span></a>
               <a href="#" class="ranch"><span class="submenu-text">Ranch</span></a>
               <a href="#" class="battery"><span class="submenu-text">Hen Battery</span></a>
@@ -198,12 +211,12 @@
           </transition>
 
           <transition name="fade">
-            <div v-if="user_sub" class="usernav">
+            <div v-if="navigation == 'user'" class="usernav">
               <a href="#" class="profile"><span class="submenu-text">profile</span></a>
               <a href="#" class="chats"><span class="submenu-text">chats</span></a>
               <a href="#" class="notifications"><span class="submenu-text">Notifications</span></a>
               <a href="#" class="add"><span class="submenu-text">Add Opinion</span></a>
-              <a href="#" v-on:click="logged = !logged; user_sub = !user_sub" class="logoff"><span class="submenu-text">Log off</span></a>
+              <a href="#" v-on:click="logged = !logged; navigation = ''" class="logoff"><span class="submenu-text">Log off</span></a>
             </div>
           </transition>
           
@@ -230,8 +243,8 @@
 
 
                   <div class="scroll">
-                    <div v-on:click="scrollup" class="up"></div>
-                    <div v-on:click="scrolldown" class="down"></div>
+                    <div v-on:click="left_scrollup" v-if="scrl_up" class="up"></div>
+                    <div v-on:click="left_scrolldown" v-if="scrl_dn" class="down"></div>
                   </div>
 
                 </div>
@@ -292,8 +305,8 @@
                   </div>
                   
                   <div class="scroll">
-                    <div v-on:click="scrollupr" class="scrollup"></div>
-                    <div v-on:click="scrolldownr" class="scrolldown"></div>
+                    <div v-on:click="right_scrollup" v-if="scrl_up" class="scrollup"></div>
+                    <div v-on:click="right_scrolldown" v-if="scrl_dn" class="scrolldown"></div>
                   </div>
         
                 </div>

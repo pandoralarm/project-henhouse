@@ -6,15 +6,22 @@
   laptop: > 1280px
 */
 
-@media screen and (orientation:portrait) { 
+@media screen and (orientation: portrait) { 
 
   #app {
     display: none;
   }
 
-}
+  #warning {
+    display: inline-block;
+  }
 
+}
 /* ROOT */
+
+#warning {
+  display: none;
+}
 
 @font-face {
   font-family: "komika";
@@ -320,6 +327,7 @@ li:before {
 .logged{  
   background: url('../images/objects/nav/logged.svg') no-repeat center top;
   background-size: contain;
+  cursor: pointer;
 }
 
 .notlogged{  
@@ -393,6 +401,8 @@ li:before {
 }
 
 .list-opinion-text{
+  
+  word-wrap: break-word;
   height: 50%;
   margin: auto;
 }
@@ -417,6 +427,8 @@ li:before {
 }
 
 .zoom_left .text{
+  
+  word-wrap: break-word;
   height: 90%;
   width: 45%;
   position: relative;
@@ -527,6 +539,8 @@ li:before {
 }
 
 .list-users-text{
+  
+  word-wrap: break-word;
   font-size: 100%;
 }
 
