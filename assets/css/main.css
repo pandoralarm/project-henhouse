@@ -29,6 +29,15 @@ body {
   image-rendering: optimizeQuality;
 }
 
+a {
+  color: black;
+}
+
+a:hover {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+}
 
 li:hover {
   color: aqua;
@@ -80,7 +89,7 @@ li:before {
 }
 
 .house { 
-  background-image: url('../images/objects/house.png');
+  background-image: url('../images/objects/house.svg');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -124,6 +133,21 @@ li:before {
 
 .door:hover{
   filter: drop-shadow(0 0 0.75rem white);
+}
+
+.info-btn{
+  background: url('../images/objects/info-btn.svg') no-repeat center top;
+  background-size: contain;
+
+  margin: auto;
+  z-index: -4800;
+  transition: all .3s ease;
+  cursor: pointer;
+}
+
+.info-btn:hover{
+  filter: drop-shadow(0 0 0.75rem white);
+  cursor: pointer;
 }
 
 .billboard{ 
@@ -177,6 +201,14 @@ li:before {
   background-size: contain;
 }
 
+.add-btn {
+  background: url('../images/objects/add-btn.svg') no-repeat center top;
+  background-size: contain;
+}
+
+.add-btn:hover{
+  filter: drop-shadow(0 0 0.5rem white);
+}
 
 .sub-list {
   overflow-y: auto;

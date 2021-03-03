@@ -3,7 +3,7 @@
 @media (min-width: 768px)  { 
   
   li {
-    font-size: .8em;
+    font-size: .7em;
   }
 
   .bg-top {
@@ -90,14 +90,27 @@
     transition: all .3s ease;
   }
 
+  .categories .top{
+    width: 95%;
+    height: 25%;
+
+    text-align: center;
+    font-weight: bold;
+    font-size: 80%;
+
+    position: absolute;
+    top: -20%;
+    left: 5%;
+    z-index: -4800;
+  }
 
   .categories-list {
     overflow-y: auto;
-    width: 100%;
+    width: 95%;
     height: 90%;
     position: absolute;
     top: -5%;
-    left: -20%;
+    left: 0;
     right: 0;
     bottom: 0;
     margin: auto;
@@ -152,10 +165,10 @@
 
   .left-hatch { 
     width: 92%;
-    height: 82%;
+    height: 83%;
     position: absolute;
     top: -48%;
-    left: -115%;
+    left: -115.5%;
     bottom: 0;
     margin: auto;
     z-index: -3800;
@@ -172,6 +185,46 @@
     z-index: -3800;
   }
 
+  
+  .left-hatch-open .add-btn {
+    cursor: pointer;
+    
+    width: 10%;
+    height: 10%;
+    position: absolute;
+    top: 115%;
+    left: 185%;
+    bottom: 0;
+    margin: auto;
+    z-index: -3800;
+  }
+
+  .left-hatch-open .add-input {
+    cursor: pointer;
+    
+    width: 80%;
+    height: 10%;
+    position: absolute;
+    top: 85%;
+    left: 108%;
+    bottom: 0;
+    margin: auto;
+    z-index: -3800;
+  }
+
+  .left-hatch-open .top{
+    width: 95%;
+    height: 25%;
+
+    text-align: center;
+    font-weight: bold;
+    font-size: 70%;
+
+    position: absolute;
+    top: 5%;
+    left: 100%;
+    z-index: -4800;
+  }
 
   .sub-list {
     overflow-y: auto;
@@ -208,7 +261,7 @@
 
   .right-hatch { 
     width: 92%;
-    height: 82%;
+    height: 83%;
     position: absolute;
     top: -48%;
     left: 124%;
@@ -229,6 +282,48 @@
     margin: auto;
     z-index: -3800;
   }
+
+  
+  .right-hatch-open .add-btn {
+    cursor: pointer;
+    
+    width: 10%;
+    height: 10%;
+    position: absolute;
+    top: 115%;
+    right: 185%;
+    bottom: 0;
+    margin: auto;
+    z-index: -3800;
+  }
+
+  .right-hatch-open .add-input {
+    cursor: pointer;
+    
+    width: 80%;
+    height: 10%;
+    position: absolute;
+    top: 85%;
+    right: 110%;
+    bottom: 0;
+    margin: auto;
+    z-index: -3800;
+  }
+
+  .right-hatch-open .top{
+    width: 95%;
+    height: 25%;
+
+    text-align: center;
+    font-weight: bold;
+    font-size: 70%;
+
+    position: absolute;
+    top: 5%;
+    right: 105%;
+    z-index: -4800;
+  }
+
 
   .topic-list {
     overflow-y: auto;
@@ -310,8 +405,7 @@
   }
 
   .compassnav{  
-    background-color: #7C8080;
-    height: 30%;
+    height: 25%;
     width: 52%;
     position: absolute;
     top: 10%;
@@ -321,61 +415,61 @@
     margin: 0;
   }
 
-  .compassnav .home{   
+ .compassnav .home{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
   .compassnav .ranch{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 20%;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
   .compassnav .battery{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 40%;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
   .compassnav .about{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 60%;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
   .compassnav .rules{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 80%;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
-
+  
   .logged{  
     height: 6%;
     width: 15%;
@@ -399,8 +493,7 @@
   }
 
   .usernav{  
-    background-color: #7C8080;
-    height: 30%;
+    height: 25%;
     width: 52%;
     position: absolute;
     top: 10%;
@@ -412,58 +505,58 @@
 
   .usernav .profile{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
   .usernav .chats{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 20%;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
   .usernav .notifications{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 40%;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
   .usernav .add{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 60%;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
 
   .usernav .logoff{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 80%;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
   .search{  
@@ -545,13 +638,16 @@
   }
 
   .list-opinion-text{
-    height: 50%;
+    word-wrap: break-word;
+    width: 50%;
+    height: 100%;
+    font-size: 150%;
     position: absolute;
     top: 0;
-    left: 25%;
+    left: 20%;
     right: 0;
     bottom: 0;
-    margin: auto;
+    margin: 0 auto;
   }
 
 
@@ -637,7 +733,7 @@
 
 
   .rpost { 
-    width: 120%;
+    width: 110%;
     height: 60%;
     position: absolute;
     top: 75%;

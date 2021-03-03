@@ -1,5 +1,8 @@
 @media (min-width: 1025px) {
 
+  h4{
+    font-size: 4vh;
+  }
 
   .middle-container {
     max-width: 30vh;
@@ -32,6 +35,15 @@
     filter: drop-shadow(0 0 0.75rem white);
   }
 
+  .info-btn{
+    width: 18%;
+    height: 18%;
+    position: absolute;
+    top: -78%;
+    left: 41%;
+    margin: auto;
+  }
+
   .billboard{ 
     font-size: 3vh;
     width: 120%;
@@ -58,6 +70,22 @@
     z-index: -4800;
     transition: all .3s ease;
   }
+
+    
+  .categories .top{
+    width: 95%;
+    height: 25%;
+
+    text-align: center;
+    font-weight: bold;
+    font-size: 100%;
+
+    position: absolute;
+    top: -20%;
+    left: 5%;
+    z-index: -4800;
+  }
+
 
 
   .categories-list {
@@ -141,6 +169,45 @@
     z-index: -3800;
   }
 
+  .left-hatch-open .add-btn {
+    cursor: pointer;
+    
+    width: 10%;
+    height: 10%;
+    position: absolute;
+    top: 110%;
+    left: 180%;
+    bottom: 0;
+    margin: auto;
+    z-index: -3800;
+  }
+
+  .left-hatch-open .add-input {
+    cursor: pointer;
+    
+    width: 80%;
+    height: 10%;
+    position: absolute;
+    top: 85%;
+    left: 105%;
+    bottom: 0;
+    margin: auto;
+    z-index: -3800;
+  }
+
+  .left-hatch-open .top{
+    width: 95%;
+    height: 25%;
+
+    text-align: center;
+    font-weight: bold;
+    font-size: 100%;
+
+    position: absolute;
+    top: 5%;
+    left: 100%;
+    z-index: -4800;
+  }
 
   .sub-list {
     overflow-y: auto;
@@ -180,7 +247,7 @@
     height: 81%;
     position: absolute;
     top: -48%;
-    left: 125%;
+    left: 125.5%;
     right: 0;
     bottom: 0;
     margin: auto;
@@ -199,12 +266,53 @@
     z-index: -3800;
   }
 
+  .right-hatch-open .add-btn {
+    cursor: pointer;
+    
+    width: 10%;
+    height: 10%;
+    position: absolute;
+    top: 110%;
+    right: 180%;
+    bottom: 0;
+    margin: auto;
+    z-index: -3800;
+  }
+
+  .right-hatch-open .add-input {
+    cursor: pointer;
+    
+    width: 80%;
+    height: 10%;
+    position: absolute;
+    top: 85%;
+    right: 110%;
+    bottom: 0;
+    margin: auto;
+    z-index: -3800;
+  }
+
+  
+  .right-hatch-open .top{
+    width: 95%;
+    height: 25%;
+
+    text-align: center;
+    font-weight: bold;
+    font-size: 100%;
+
+    position: absolute;
+    top: 5%;
+    right: 100%;
+    z-index: -4800;
+  }
+
   .topic-list {
     overflow-y: auto;
-    width: 85%;
+    width: 80%;
     height: 60%;
     position: absolute;
-    top: +5%;
+    top: 10%;
     left: -210%;
     right: 0;
     bottom: 0;
@@ -265,11 +373,25 @@
     z-index: -2000;
   }
 
-  .compass{  
-    height: 10%;
-    width: 15%;
+  
+  .submenu-text {
+    font-size: 80%;
+
+    width: 70%;
+
     position: absolute;
     top: 0;
+    left: 0;
+
+    margin-left: 35%;
+    margin-top: 5%;
+  }
+
+  .compass{  
+    height: 8%;
+    width: 15%;
+    position: absolute;
+    top: 2%;
     left: 5%;
     right: 0;
     bottom: 0;
@@ -279,7 +401,6 @@
   }
 
   .compassnav{  
-    background-color: #7C8080;
     height: 30%;
     width: 52%;
     position: absolute;
@@ -292,57 +413,57 @@
 
   .compassnav .home{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
   .compassnav .ranch{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 20%;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
   .compassnav .battery{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 40%;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
   .compassnav .about{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 60%;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
   .compassnav .rules{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 80%;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
   .logged{  
@@ -368,7 +489,6 @@
   }
 
   .usernav{  
-    background-color: #7C8080;
     height: 30%;
     width: 52%;
     position: absolute;
@@ -381,58 +501,58 @@
 
   .usernav .profile{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
   .usernav .chats{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 20%;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
   .usernav .notifications{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 40%;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
   .usernav .add{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 60%;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
 
   .usernav .logoff{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 80%;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
   .search{  
@@ -514,10 +634,12 @@
   }
 
   .list-opinion-text{
-    height: 50%;
+    word-wrap: break-word;
+    width: 75%;
+    height: 100%;
     position: absolute;
     top: 0;
-    left: 25%;
+    left: 20%;
     right: 0;
     bottom: 0;
     margin: auto;
@@ -564,6 +686,7 @@
   }
 
   .zoom_left .text{
+    font-size: 150%;
     height: 90%;
     width: 45%;
     position: relative;
@@ -692,7 +815,6 @@
 
   }
 
-
   .list-users{
     width: 95%;
     height: 8vh;
@@ -709,7 +831,7 @@
   }
 
   .list-users-pos{
-    font-size: 155%;
+    font-size: 300%;
     line-height: 1.5;
     text-align: center;
     width: 15%;
@@ -742,7 +864,7 @@
   }
 
   .list-users-text{
-    font-size: 100%;
+    font-size: 150%;
     height: 50%;
     position: absolute;
     top: 0;
@@ -869,7 +991,7 @@
     padding-left: 5%;
 
     text-align: center;
-    font-size: 250%;
+    font-size: 450%;
     font-weight: 800;
 
     z-index: -1000;
@@ -962,9 +1084,12 @@
 }
 
 
-@media (min-width: 1024px) and (display-mode: fullscreen) {
+@media (min-width: 1025px) and (display-mode: fullscreen) {
 
-  
+  h4{
+    font-size: 3.5vh;
+  }
+
   .middle-container {
     max-width: 26.5vh;
     max-height: 19.5vw;
@@ -1025,6 +1150,21 @@
 
 
   .categories-list {
+    overflow-y: auto;
+    width: 85%;
+    height: 90%;
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: -4800;
+    transition: color .3s ease;
+  }
+
+  
+  .categories .title{
     overflow-y: auto;
     width: 85%;
     height: 90%;
@@ -1106,6 +1246,18 @@
     z-index: -3800;
   }
 
+  .left-hatch-open .add-btn {
+    cursor: pointer;
+    
+    width: 10%;
+    height: 10%;
+    position: absolute;
+    top: 112%;
+    left: 180%;
+    bottom: 0;
+    margin: auto;
+    z-index: -3800;
+  }
 
   .sub-list {
     overflow-y: auto;
@@ -1163,6 +1315,21 @@
     margin: auto;
     z-index: -3800;
   }
+
+  
+  .right-hatch-open .add-btn {
+    cursor: pointer;
+    
+    width: 10%;
+    height: 10%;
+    position: absolute;
+    top: 112%;
+    right: 180%;
+    bottom: 0;
+    margin: auto;
+    z-index: -3800;
+  }
+
 
   .topic-list {
     overflow-y: auto;
@@ -1230,6 +1397,8 @@
     z-index: -2000;
   }
 
+
+
   .compass{  
     height: 8%;
     width: 15%;
@@ -1244,8 +1413,7 @@
   }
 
   .compassnav{  
-    background-color: #7C8080;
-    height: 30%;
+    height: 27%;
     width: 52%;
     position: absolute;
     top: 10%;
@@ -1257,57 +1425,57 @@
 
   .compassnav .home{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
   .compassnav .ranch{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 20%;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
   .compassnav .battery{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 40%;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
   .compassnav .about{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 60%;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
   .compassnav .rules{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 80%;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
   .logged{  
@@ -1332,9 +1500,8 @@
     margin: 0;
   }
 
-  .usernav{  
-    background-color: #7C8080;
-    height: 30%;
+ .usernav{  
+    height: 26%;
     width: 52%;
     position: absolute;
     top: 10%;
@@ -1346,60 +1513,60 @@
 
   .usernav .profile{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
   .usernav .chats{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 20%;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
   .usernav .notifications{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 40%;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
   .usernav .add{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 60%;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
 
 
   .usernav .logoff{   
     height: 20%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     top: 80%;
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 0;
+    margin: 1% auto;
   }
-
+  
   .search{  
     height: 6%;
     width: 15%;
@@ -1479,20 +1646,21 @@
   }
 
   .list-opinion-text{
-    height: 50%;
+    height: 100%;
+    font-size: 150%;
     position: absolute;
     top: 0;
-    left: 25%;
+    left: 0;
     right: 0;
     bottom: 0;
-    margin: auto;
+    margin: 0 5% 0 25%;
   }
 
 
 
   .zoom_left{
     height: 40%;
-    width: 35%;
+    width: 40%;
     position: fixed;
     top: 14%;
     left: 0;
@@ -1532,10 +1700,13 @@
     height: 90%;
     width: 45%;
     position: relative;
-    top: 5%;
-    left: 27%;
+    top: 0;
+    left: 0;
     right: 0;
     bottom: 0;
+    margin-top: 1%;
+    margin-left: 27%;
+    font-size: 150%;
   }
 
   .zoom_left .gauge{
@@ -1575,7 +1746,7 @@
     height: 50%;
     position: absolute;
     top: 70%;
-    left: 270%;
+    left: 255%;
     right: 0;
     bottom: 0;
     margin: auto;
@@ -1674,7 +1845,7 @@
   }
 
   .list-users-pos{
-    font-size: 155%;
+    font-size: 300%;
     line-height: 1.5;
     text-align: center;
     width: 15%;
@@ -1707,7 +1878,7 @@
   }
 
   .list-users-text{
-    font-size: 100%;
+    font-size: 175%;
     height: 50%;
     position: absolute;
     top: 0;
@@ -1718,8 +1889,8 @@
   }
 
   .zoom_right{
-    height: 45%;
-    width: 35%;
+    height: 40%;
+    width: 40%;
     position: fixed;
     top: 14%;
     right: 0;
@@ -1799,11 +1970,11 @@
     width: 55%;
     height: 25%;
     text-align: left;
-    font-size: 7vh;
+    font-size: 8vh;
     font-weight: 800;
-    letter-spacing: 1.5vh;
+    letter-spacing: 2vh;
     position: relative;
-    top: -30%;
+    top: -50%;
     left: 8%;
     margin: 1% 0;
 
@@ -1816,7 +1987,7 @@
     height: 25%;
     position: relative;
     text-align: center;
-    font-size: 90%;
+    font-size: 150%;
     font-weight: 800;
     top: 75%;
     left: 38%;
@@ -1834,7 +2005,7 @@
     padding-left: 5%;
 
     text-align: center;
-    font-size: 250%;
+    font-size: 450%;
     font-weight: 800;
 
     z-index: -1000;
