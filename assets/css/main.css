@@ -12,16 +12,33 @@
     display: none;
   }
 
-  #warning {
-    display: inline-block;
+  .warning-text {
+    background-color: rgba(255, 255, 255, .5);
+    height: 50%;
+    position: relative;
+    top: 0;
+    left: 0;
+    margin: 50% auto;
+    padding: 15%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 3vh;
+    opacity: 1;
+    z-index: 9999;
+  }
+
+}
+
+@media screen and (orientation: landscape) { 
+
+  .warning-text {
+
+    opacity: 0;
   }
 
 }
 /* ROOT */
 
-#warning {
-  display: none;
-}
 
 @font-face {
   font-family: "komika";
