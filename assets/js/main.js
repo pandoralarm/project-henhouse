@@ -9,11 +9,11 @@ var app = new Vue({
     navigation: '',
     rightnav: false,
     start: true,
-    cat: false,
-    sub: false,
-    topic: false,
-    lastcat: false,
-    lastsub: false,
+    selected_category: false,
+    selected_sub: false,
+    selected_topic: false,
+    previous_category: false,
+    previous_sub: false,
     logged: false,
     zoom_left: false,
     zoom_right: false,
@@ -24,98 +24,99 @@ var app = new Vue({
     zoom_end: 1,
     billboard: "State a new opinion",
     image: 'assets',
+    add_input: '',
 
 
     categories: {
-      category: { category_name : 'Sports, Games, Recreational',
+      category1: { category_name : 'Sports, Games, Recreational',
                   subcategories : { 
-                      subcategory : { subcategory_name : 'Soccer',
+                      subcategory1 : { subcategory_name : 'Soccer',
                                     topics : {
-                                      topic : { subtopic_name : 'Subcat1-top1'},
-                                      topic : { subtopic_name : 'Subcat1-top2'},
-                                      topic : { subtopic_name : 'Subcat1-top3'},
-                                      topic : { subtopic_name : 'Subcat1-top4'},
-                                      topic : { subtopic_name : 'Subcat1-top5'},
+                                      topic1 : { subtopic_name : 'Subcat1-top1'},
+                                      topic2 : { subtopic_name : 'Subcat1-top2'},
+                                      topic3 : { subtopic_name : 'Subcat1-top3'},
+                                      topic4 : { subtopic_name : 'Subcat1-top4'},
+                                      topic5 : { subtopic_name : 'Subcat1-top5'},
                                     },
                       },
-                      subcategory : { subcategory_name : 'Volleyball',
+                      subcategory2 : { subcategory_name : 'Volleyball',
                                     topics : {
-                                      topic : { subtopic_name : 'Subcat2-top1'},
-                                      topic : { subtopic_name : 'Subcat2-top2'},
-                                      topic : { subtopic_name : 'Subcat2-top3'},
-                                      topic : { subtopic_name : 'Subcat2-top4'},
-                                      topic : { subtopic_name : 'Subcat2-top5'},
+                                      topic1 : { subtopic_name : 'Subcat2-top1'},
+                                      topic2 : { subtopic_name : 'Subcat2-top2'},
+                                      topic3 : { subtopic_name : 'Subcat2-top3'},
+                                      topic4 : { subtopic_name : 'Subcat2-top4'},
+                                      topic5 : { subtopic_name : 'Subcat2-top5'},
                                     },
                       },
-                      subcategory : { subcategory_name : 'Volleyball',
+                      subcategory3 : { subcategory_name : 'Basketball',
                                     topics : {
-                                      topic : { subtopic_name : 'Subcat3-top1'},
-                                      topic : { subtopic_name : 'Subcat3-top2'},
-                                      topic : { subtopic_name : 'Subcat3-top3'},
-                                      topic : { subtopic_name : 'Subcat3-top4'},
-                                      topic : { subtopic_name : 'Subcat3-top5'},
+                                      topic1 : { subtopic_name : 'Subcat3-top1'},
+                                      topic2 : { subtopic_name : 'Subcat3-top2'},
+                                      topic3 : { subtopic_name : 'Subcat3-top3'},
+                                      topic4 : { subtopic_name : 'Subcat3-top4'},
+                                      topic5 : { subtopic_name : 'Subcat3-top5'},
                                     },
                       },
                   },
       },
-      category: { category_name : 'Technology and Science',
+      category2: { category_name : 'Technology and Science',
                   subcategories : { 
-                      subcategory : { subcategory_name : 'Computers',
+                      subcategory1 : { subcategory_name : 'Computers',
                                     topics : {
-                                      topic : { subtopic_name : 'Subcat1-top1'},
-                                      topic : { subtopic_name : 'Subcat1-top2'},
-                                      topic : { subtopic_name : 'Subcat1-top3'},
-                                      topic : { subtopic_name : 'Subcat1-top4'},
-                                      topic : { subtopic_name : 'Subcat1-top5'},
+                                      topic1 : { subtopic_name : 'Subcat1-top1'},
+                                      topic2 : { subtopic_name : 'Subcat1-top2'},
+                                      topic3 : { subtopic_name : 'Subcat1-top3'},
+                                      topic4 : { subtopic_name : 'Subcat1-top4'},
+                                      topic5 : { subtopic_name : 'Subcat1-top5'},
                                     },
                       },
-                      subcategory : { subcategory_name : 'Planes',
+                      subcategory2 : { subcategory_name : 'Planes',
                                     topics : {
-                                      topic : { subtopic_name : 'Subcat2-top1'},
-                                      topic : { subtopic_name : 'Subcat2-top2'},
-                                      topic : { subtopic_name : 'Subcat2-top3'},
-                                      topic : { subtopic_name : 'Subcat2-top4'},
-                                      topic : { subtopic_name : 'Subcat2-top5'},
+                                      topic1 : { subtopic_name : 'Subcat2-top1'},
+                                      topic2 : { subtopic_name : 'Subcat2-top2'},
+                                      topic3 : { subtopic_name : 'Subcat2-top3'},
+                                      topic4 : { subtopic_name : 'Subcat2-top4'},
+                                      topic5 : { subtopic_name : 'Subcat2-top5'},
                                     },
                       },
-                      subcategory : { subcategory_name : 'Planets',
+                      subcategory3 : { subcategory_name : 'Planets',
                                     topics : {
-                                      topic : { subtopic_name : 'Subcat3-top1'},
-                                      topic : { subtopic_name : 'Subcat3-top2'},
-                                      topic : { subtopic_name : 'Subcat3-top3'},
-                                      topic : { subtopic_name : 'Subcat3-top4'},
-                                      topic : { subtopic_name : 'Subcat3-top5'},
+                                      topic1 : { subtopic_name : 'Subcat3-top1'},
+                                      topic2 : { subtopic_name : 'Subcat3-top2'},
+                                      topic3 : { subtopic_name : 'Subcat3-top3'},
+                                      topic4 : { subtopic_name : 'Subcat3-top4'},
+                                      topic5 : { subtopic_name : 'Subcat3-top5'},
                                     },
                       },
                     },
       },
-      category: { category_name : 'Arts and Cultural',
+      category3: { category_name : 'Arts and Cultural',
                   subcategories : { 
-                      subcategory : { subcategory_name : 'Dances',
+                      subcategory1 : { subcategory_name : 'Dances',
                                     topics : {
-                                      topic : { subtopic_name : 'Subcat1-top1'},
-                                      topic : { subtopic_name : 'Subcat1-top2'},
-                                      topic : { subtopic_name : 'Subcat1-top3'},
-                                      topic : { subtopic_name : 'Subcat1-top4'},
-                                      topic : { subtopic_name : 'Subcat1-top5'},
+                                      topic1 : { subtopic_name : 'Subcat1-top1'},
+                                      topic2 : { subtopic_name : 'Subcat1-top2'},
+                                      topic3 : { subtopic_name : 'Subcat1-top3'},
+                                      topic4 : { subtopic_name : 'Subcat1-top4'},
+                                      topic5 : { subtopic_name : 'Subcat1-top5'},
                                     },
                       },
-                      subcategory : { subcategory_name : 'Music',
+                      subcategory2 : { subcategory_name : 'Music',
                                     topics : {
-                                      topic : { subtopic_name : 'Subcat2-top1'},
-                                      topic : { subtopic_name : 'Subcat2-top2'},
-                                      topic : { subtopic_name : 'Subcat2-top3'},
-                                      topic : { subtopic_name : 'Subcat2-top4'},
-                                      topic : { subtopic_name : 'Subcat2-top5'},
+                                      topic1 : { subtopic_name : 'Subcat2-top1'},
+                                      topic2 : { subtopic_name : 'Subcat2-top2'},
+                                      topic3 : { subtopic_name : 'Subcat2-top3'},
+                                      topic4 : { subtopic_name : 'Subcat2-top4'},
+                                      topic5 : { subtopic_name : 'Subcat2-top5'},
                                     },
                       },
-                      subcategory : { subcategory_name : 'History',
+                      subcategory3 : { subcategory_name : 'History',
                                     topics : {
-                                      topic : { subtopic_name : 'Subcat3-top1'},
-                                      topic : { subtopic_name : 'Subcat3-top2'},
-                                      topic : { subtopic_name : 'Subcat3-top3'},
-                                      topic : { subtopic_name : 'Subcat3-top4'},
-                                      topic : { subtopic_name : 'Subcat3-top5'},
+                                      topic1 : { subtopic_name : 'Subcat3-top1'},
+                                      topic2 : { subtopic_name : 'Subcat3-top2'},
+                                      topic3 : { subtopic_name : 'Subcat3-top3'},
+                                      topic4 : { subtopic_name : 'Subcat3-top4'},
+                                      topic5 : { subtopic_name : 'Subcat3-top5'},
                                     },
                       },
                     },
@@ -181,8 +182,6 @@ var app = new Vue({
       badge: false,
       date: '22-05-2020',
     }
-
-
   ],
 
   },
@@ -315,6 +314,12 @@ var app = new Vue({
      base = .14*$(window).height();
      interval = 0.05*$(window).height();
      target = parseInt(base + ( interval * (this.selected_pos - 1)));
+
+      /* 
+        IF CONDITION IS USED HERE IS USED TO DETERMINE WHEN
+        SCROLLING ANIMATION SHOULD ONLY OCCUR AFTER THE ZOOM
+        WINDOW APPEAR
+      */
      if (current == 0){
        setTimeout(function() {
          $('.zoom_right').animate({top: target+'px'}, 0, 'linear');
@@ -343,18 +348,12 @@ var app = new Vue({
 
     right_scrollup() {
       /* SENDS SELECTED POSITION FROM SCROLL TO ZOOM WINDOW */
-      prevtop = parseInt($('.zoom_right').css('top'));
-      interval = 0.05*$(window).height();
-      console.log($('.zoom_right').animate({top: prevtop-interval+'px'}));
       this.zoomin_right(this.selected_pos -1);
       this.checkPosRight();
     },
 
     right_scrolldown() {
       /* SENDS SELECTED POSITION FROM SCROLL TO ZOOM WINDOW */
-      prevtop = parseInt($('.zoom_right').css('top'));
-      interval = 0.05*$(window).height();
-      console.log($('.zoom_right').animate({top: prevtop+interval+'px'}));
       this.zoomin_right(this.selected_pos +1);
       this.checkPosRight();
     },
@@ -373,6 +372,34 @@ var app = new Vue({
       } else {
         this.navigation = 'user';
       }
+    },
+    newSubCategory(category_position, category_name){
+      sublength = Object.keys(this.categories["category1"]["subcategories"]).length;
+      this.categories['category'+category_position]
+                     ['subcategories']
+                     ['subcategory'+(sublength+1)] 
+                     = {subcategory_name: category_name, topics : {}};
+      this.door = false;  
+      this.previous_category = this.selected_category;
+      this.selected_category = false;
+      this.door = true;  
+      this.selected_category = this.previous_category;
+      this.add_input = '';
+    },
+    newSubTopic(category_position, subcategory_position, subtopic_name){
+      sublength = Object.keys(this.categories["category"+category_position]
+                  ["subcategories"]["subcategory"+subcategory_position]["topics"]).length;
+      this.categories['category'+category_position]
+                     ['subcategories']
+                     ['subcategory'+subcategory_position]
+                     ['topics']
+                     ['topic'+(sublength+1)]
+                     = {subtopic_name: subtopic_name};
+
+      this.previous_sub = this.selected_sub;
+      this.selected_sub = false;
+      this.selected_sub = this.previous_sub;
+      this.add_input = '';
     }
   }
 })

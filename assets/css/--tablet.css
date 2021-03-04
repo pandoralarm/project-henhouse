@@ -621,6 +621,10 @@
     z-index: -1500;
   }
 
+  .zoom-base-left {
+    font-size: 150%;
+  }
+
 
   .list-opinion{
     width: 95%;
@@ -800,6 +804,10 @@
     border-radius: 8px;
     border: groove 2px black;
     z-index: -1000;
+  }
+
+  .zoom-base-right {
+    font-size: 250%;
   }
 
 

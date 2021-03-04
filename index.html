@@ -37,142 +37,116 @@
     <div class="container-fluid" >
 
       <div v-if="main" class="container">
-        <div class="house">
+        <transition name="fader">
+          <div class="house">
   
-          <div class="middle-container">
-            
-            <div class="info-btn"></div>
-
-            <div class="billboard">
-              {{ billboard }}
-            </div>
-
-            <transition name="fader">
-              <div v-if="door" class="door">
-                <div v-if="start" v-on:click="door = false; billboard = 'Welcome to the chickencoop! Join to debate!'" class="start">
-                  START
+            <div class="middle-container">
+              
+              <div v-on:click="window = true; main = false;" class="info-btn"></div>
+  
+              <div class="billboard">
+                {{ billboard }}
+              </div>
+  
+              <transition name="fader">
+                <div v-if="door" class="door">
+                  <div v-if="start" v-on:click="door = false; billboard = 'Welcome to the chickencoop! Join to debate!'" class="start">
+                    START
+                  </div>
                 </div>
-              </div>
-            </transition>
-
-            <div v-if="!door" class="categories">
-              <div class="top">Select a category</div>
-              <div v-on:click="door = true; start = false; " class="categories-list">
-
-                <ul >
-                  <li v-on:click="cat = 1">Sports, Games, recreational</li>
-                  <li v-on:click="cat = 2">Technology & Science</li>
-                  <li v-on:click="cat = 3">Arts & Cultural</li>
-                  <li v-on:click="cat = 4">Career & Family</li>
-                  <li v-on:click="cat = 5">Health & Medical</li>
-                  <li v-on:click="cat = 6">Lifestyle & hobby, leisure</li>
-                  <li v-on:click="cat = 7">Politics & society</li>
-                  <li v-on:click="cat = 8">Financial and economics</li>
-                  <li v-on:click="cat = 9">Pets, Animals & Outdoors</li>
-                  <li v-on:click="cat = 10">Spiritual, Philosophy, religion</li>
-                </ul>
-              </div>
-
-
-                            
-              <div v-on:click="door = true; start = true; billboard = 'State a new opinion';" class="categories-back">
-
-              </div>
-
-            </div>
-            <transition name="fader">
-              <div v-if="!cat" class="left-hatch">
-              </div>
-            </transition>
-
-            
-            <transition name="fader">
-              <div v-if="cat" class="left-hatch-open">
-
-                
-                <div class="add-btn"></div>
-                <input type="text" class="add-input"></input>
-                <div class="top">Select</div>
-                <div v-on:click="door = true; start = false; lastcat = cat; cat = false;" class="sub-list">
-                  
-                  <template>
-                    <ul v-if="cat === 1">
-                      <li v-on:click="sub = 1">Soccer</li>
-                      <li v-on:click="sub = 2">Volleyball</li>
-                      <li v-on:click="sub = 3">Hockey</li>
-                      <li v-on:click="sub = 4">Rugby</li>
-                      <li v-on:click="sub = 5">Karate</li>
-                      <li v-on:click="sub = 6">Judo</li>
-                      <li v-on:click="sub = 7">Billiards, Snooker</li>
-                      <li v-on:click="sub = 8">Basketball</li>
-                      <li v-on:click="sub = 9">Korfbal</li>
-                      <li v-on:click="sub = 10">American Footbal</li>
-                    </ul>
-                  </template>
-
+              </transition>
+  
+              <div v-if="!door" class="categories">
+                <div class="top">Select a category</div>
+                <div v-on:click="door = true; start = false; " class="categories-list">
+  
+                  <ul >
+                    <li v-for="(cat, catname, index) in categories" v-on:click="selected_category = index+1;">{{cat.category_name}}</li>
+  
+                  </ul>
                 </div>
-
-
+  
+  
                               
-                <div v-on:click="door = false;  cat = false" class="cat-back">
-
+                <div v-on:click="door = true; start = true; billboard = 'State a new opinion';" class="categories-back">
+  
                 </div>
-
+  
               </div>
-            </transition>
-
-            <transition name="fader">
-              <div v-if="!sub" class="right-hatch"></div>
-            </transition>
-
-            <transition name="fader">
-              <div v-if="sub" class="right-hatch-open">
-
-                        
-                <div class="add-btn"></div>
-                <input type="text" class="add-input"></input>
-
-                <div class="top">Select</div>
-                <div v-on:click="door = true; start = false; lastsub = sub; sub = false; window = true; main = false;" class="topic-list">
+              <transition name="fader">
+                <div v-if="!selected_category" class="left-hatch">
+                </div>
+              </transition>
+  
+              
+              <transition name="fader">
+                <div v-if="selected_category" class="left-hatch-open">
+  
                   
-                  <template>
-                    <ul v-if="sub === 1">
-                      <li v-on:click="topic = 1">Soccer</li>
-                      <li v-on:click="topic = 2">Volleyball</li>
-                      <li v-on:click="topic = 3">Hockey</li>
-                      <li v-on:click="topic = 4">Rugby</li>
-                      <li v-on:click="topic = 5">Karate</li>
-                      <li v-on:click="topic = 6">Judo</li>
-                      <li v-on:click="topic = 7">Billiards, Snooker</li>
-                      <li v-on:click="topic = 8">Basketball</li>
-                      <li v-on:click="topic = 9">Korfbal</li>
-                      <li v-on:click="topic = 10">American Footbal</li>
-                    </ul>
-                  </template>
-
+                  <div v-on:click="newSubCategory( selected_category, add_input)" class="add-btn"></div>
+                  <input v-model="add_input" type="text" class="add-input" />
+                  <div class="top">Select</div>
+                  <div v-on:click="door = true; start = false; previous_category = selected_category; selected_category = false;" class="sub-list">
+                    
+                    <template>
+                      <ul>
+                        <li v-for="(sub, subname, index) in categories['category'+selected_category]['subcategories']" v-on:click="selected_sub = index+1">{{sub.subcategory_name}}</li>
+                      </ul>
+                    </template>
+  
+                  </div>
+  
+  
+                                
+                  <div v-on:click="door = false;  selected_category = false" class="cat-back">
+  
+                  </div>
+  
                 </div>
-                              
-                <div v-on:click="cat = lastcat; sub = false;" class="sub-back">
-
+              </transition>
+  
+              <transition name="fader">
+                <div v-if="!selected_sub" class="right-hatch"></div>
+              </transition>
+  
+              <transition name="fader">
+                <div v-if="selected_sub" class="right-hatch-open">
+  
+                          
+                  <div v-on:click="newSubTopic( previous_category, selected_sub, add_input)" class="add-btn"></div>
+                  <input v-model="add_input" type="text" class="add-input" />
+  
+                  <div class="top">Select</div>
+                  <div v-on:click="door = true; start = false; previous_sub = selected_sub; selected_sub = false; window = true; main = false;" class="topic-list">
+                    
+                    <template>
+                      <ul>
+                        <li v-for="(topic, subtopic, index) in categories['category'+previous_category]['subcategories']['subcategory'+selected_sub]['topics']" v-on:click="selected_topic = index+1">{{topic.subtopic_name}}</li>
+                      </ul>
+                    </template>
+  
+                  </div>
+                                
+                  <div v-on:click="selected_category = previous_category; selected_sub = false;" class="sub-back">
+  
+                  </div>
+  
                 </div>
-
+              </transition>
+  
+              <div v-if="leftnav || rightnav" v-on:click="defocus" class="overlay"></div>
+              
+              <div v-on:click="leftnav = !leftnav" class="lpost">
               </div>
-            </transition>
-
-            <div v-if="leftnav || rightnav" v-on:click="defocus" class="overlay"></div>
-            
-            <div v-on:click="leftnav = !leftnav" class="lpost">
+  
+              <div v-on:click="rightnav = !rightnav" class="rpost">
+              </div>
+  
             </div>
-
-            <div v-on:click="rightnav = !rightnav" class="rpost">
-            </div>
-
+    
           </div>
-  
-          
+        </transition>
 
-  
-        </div>
       </div>
 
       <transition name="slideleft">
@@ -272,7 +246,7 @@
 
           <div class="podium"></div>
           <div class="popular-users">
-            <h4 class="text-center">
+            <h4 class="text-center zoom-base-right">
               Most Popular Users
             </h4>
             
