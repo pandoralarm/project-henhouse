@@ -188,6 +188,7 @@
     width: 80%;
     height: 10%;
     position: absolute;
+    font-size: 12pt;
     top: 85%;
     left: 105%;
     bottom: 0;
@@ -284,6 +285,7 @@
     
     width: 80%;
     height: 10%;
+    font-size: 12pt;
     position: absolute;
     top: 85%;
     right: 110%;
@@ -711,17 +713,19 @@
   .gauge .agree{  
     position: relative;
     top: 55%;
-    left: 15%;
-    font-size: 100%;
+    left: 13%;
+    font-size: 12pt;
     margin: 1% 1%;
+    letter-spacing: 2px;
   }
 
   .gauge .disagree{  
     position: relative;
     top: 55%;
-    left: 40%;
-    font-size: 100%;
+    left: 35%;
+    font-size: 12pt;
     margin: 1% 1%;
+    letter-spacing: 2px;
   }
 
   /* POPULAR USERS PART  */
@@ -830,7 +834,7 @@
   }
 
   .list-users-pos{
-    font-size: 300%;
+    font-size: 20pt;
     line-height: 1.5;
     text-align: center;
     width: 15%;
@@ -918,7 +922,7 @@
     left: 0;
     margin: 1% auto;
     text-align: center;
-    font-size: 100%;
+    font-size: 12pt;
     font-weight: 900;
   }
 
@@ -954,9 +958,9 @@
     width: 55%;
     height: 25%;
     text-align: left;
-    font-size: 7vh;
+    font-size: 35pt;
     font-weight: 800;
-    letter-spacing: 2.5vh;
+    letter-spacing: 15.5px;
     position: relative;
     top: -30%;
     left: 8%;
@@ -1711,27 +1715,26 @@
     width: 25%;
     height: 90%;
     position: absolute;
+    font-size: 14pt;
+    letter-spacing: 2px;
     top: 0;
     left: 72%;
     margin: 1% 1%;
-  }
-
-  .gauge {
     color: red;
   }
 
   .gauge .agree{  
     position: relative;
-    top: 50%;
-    left: 10%;
+    top: 55%;
+    left: 12%;
     font-size: 100%;
     margin: 1% 1%;
   }
 
   .gauge .disagree{  
     position: relative;
-    top: 50%;
-    left: 35%;
+    top: 55%;
+    left: 32%;
     font-size: 100%;
     margin: 1% 1%;
   }
@@ -1843,7 +1846,7 @@
   }
 
   .list-users-pos{
-    font-size: 300%;
+    font-size: 22pt;
     line-height: 1.5;
     text-align: center;
     width: 15%;
@@ -1931,7 +1934,6 @@
     left: 0;
     margin: 1% auto;
     text-align: center;
-    font-size: 100%;
     font-weight: 900;
   }
 
@@ -1967,9 +1969,8 @@
     width: 55%;
     height: 25%;
     text-align: left;
-    font-size: 8vh;
+    font-size: 40pt;
     font-weight: 800;
-    letter-spacing: 2vh;
     position: relative;
     top: -50%;
     left: 8%;

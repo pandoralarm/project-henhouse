@@ -82,6 +82,7 @@
     width: 30vh;
     height: 90%;
     position: absolute;
+    font-size: 16pt;
     top: -5%;
     left: 0;
     right: 0;
@@ -204,6 +205,7 @@
     width: 85%;
     height: 60%;
     position: absolute;
+    font-size: 16pt;
     top: +5%;
     left: 100%;
     right: 0;
@@ -301,6 +303,7 @@
     overflow-y: auto;
     width: 85%;
     height: 60%;
+    font-size: 16pt;
     position: absolute;
     top: 5%;
     left: -210%;
@@ -531,6 +534,7 @@
   .zoom_left .text{
     height: 90%;
     width: 45%;
+    font-size: 12pt;
     position: relative;
     top: 5%;
     left: 27%;
@@ -547,23 +551,22 @@
     margin: 1% 1%;
   }
 
-  .gauge {
-    color: red;
-  }
 
   .gauge .agree{  
     position: relative;
     top: 55%;
-    left: 15%;
-    font-size: 145%;
+    left: 12%;
+    letter-spacing: 4px;
+    font-size: 16pt;
     margin: 1% 1%;
   }
 
   .gauge .disagree{  
     position: relative;
     top: 55%;
-    left: 40%;
-    font-size: 145%;
+    left: 35%;
+    letter-spacing: 4px;
+    font-size: 16pt;
     margin: 1% 1%;
   }
 
@@ -667,6 +670,7 @@
     right: 0;
     bottom: 0;
     margin: 2px auto;
+    font-size: 14pt;
     border-radius: 8px;
     border: groove 2px black;
     cursor: pointer;
@@ -674,7 +678,7 @@
   }
 
   .list-users-pos{
-    font-size: 155%;
+    font-size: 20pt;
     line-height: 2;
 
     width: 15%;
@@ -761,7 +765,7 @@
     left: 0;
     margin: 1% auto;
     text-align: center;
-    font-size: 100%;
+    font-size: 14pt;
     font-weight: 900;
   }
 
@@ -797,7 +801,7 @@
     width: 55%;
     height: 25%;
     text-align: left;
-    font-size: 7vh;
+    font-size: 45pt;
     font-weight: 800;
     letter-spacing: 2.5vh;
     position: relative;
@@ -814,7 +818,7 @@
     height: 25%;
     position: relative;
     text-align: center;
-    font-size: 90%;
+    font-size: 14pt;
     font-weight: 800;
     top: 75%;
     left: 38%;
@@ -831,7 +835,7 @@
     margin: 1%;
 
     text-align: center;
-    font-size: 300%;
+    font-size: 42pt;
     font-weight: 800;
 
     z-index: -1000;
@@ -1166,7 +1170,6 @@
   }
 
   .right-hatch-open { 
-    bo
     width: 90%;
     height: 81%;
     position: absolute;
@@ -1402,8 +1405,10 @@
   }
 
   .list-opinion-text{
+    border: solid 1px black;
     height: 50%;
     position: absolute;
+    font-size: 12pt;
     top: 0;
     left: 25%;
     right: 0;
@@ -1467,25 +1472,22 @@
     top: 0;
     left: 72%;
     margin: 1% 1%;
-  }
-
-  .gauge {
     color: red;
   }
 
   .gauge .agree{  
     position: relative;
     top: 55%;
-    left: 15%;
-    font-size: 145%;
+    left: 12%;
+    font-size: 18pt;
     margin: 1% 1%;
   }
 
   .gauge .disagree{  
     position: relative;
     top: 55%;
-    left: 40%;
-    font-size: 145%;
+    left: 35%;
+    font-size: 18pt;
     margin: 1% 1%;
   }
 
@@ -1549,7 +1551,7 @@
 
   .popular-users{
     font-weight: 800;
-    font-size: 150%;
+    font-size: 10pt;
     width: 90%;
     min-height: 50%;
     position: relative;
@@ -1590,6 +1592,7 @@
     right: 0;
     bottom: 0;
     margin: 2px auto;
+    font-size: 16pt;
     border-radius: 8px;
     border: groove 2px black;
     cursor: pointer;
@@ -1597,7 +1600,7 @@
   }
 
   .list-users-pos{
-    font-size: 155%;
+    font-size: 24pt;
     line-height: 2;
 
     width: 15%;
@@ -1684,7 +1687,7 @@
     left: 0;
     margin: 1% auto;
     text-align: center;
-    font-size: 100%;
+    font-size: 16pt;
     font-weight: 900;
   }
 
@@ -1737,7 +1740,7 @@
     height: 25%;
     position: relative;
     text-align: center;
-    font-size: 90%;
+    font-size: 14pt;
     font-weight: 800;
     top: 75%;
     left: 38%;
@@ -1754,7 +1757,7 @@
     margin: 1%;
 
     text-align: center;
-    font-size: 300%;
+    font-size: 45pt;
     font-weight: 800;
 
     z-index: -1000;

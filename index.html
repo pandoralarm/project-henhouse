@@ -1,314 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name='viewport' content='minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no'/>
-  <title>Welcome to the Henhouse!</title>
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="assets/css/--mobile.css" />
-    <link rel="stylesheet" href="assets/css/--tablet.css" />
-    <link rel="stylesheet" href="assets/css/--hdmobile.css" />
-    <link rel="stylesheet" href="assets/css/--laptop.css" />
-    <link rel="stylesheet" href="assets/css/--xlarge.css" />
-    <link rel="stylesheet" href="assets/css/--animations.css" />
-    <!-- Vue JS 2.6x CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <!-- JQuery 3.5.x CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-    
-  </head>
-<body>
-
-  <section>
-    <div class="bg-top">
-      <div id="warning" class="warning-text">Portrait devices are currently unsupported, please try rotating the device!</div>
-    </div>
-  </section>
-  <section id="app" >
-    <div class="container-fluid" >
-
-      <div v-if="main" class="container">
-        <transition name="fader">
-          <div class="house">
-  
-            <div class="middle-container">
-              
-              <div v-on:click="window = true; main = false;" class="info-btn"></div>
-  
-              <div class="billboard">
-                {{ billboard }}
-              </div>
-  
-              <transition name="fader">
-                <div v-if="door" class="door">
-                  <div v-if="start" v-on:click="door = false; billboard = 'Welcome to the chickencoop! Join to debate!'" class="start">
-                    START
-                  </div>
-                </div>
-              </transition>
-  
-              <div v-if="!door" class="categories">
-                <div class="top">Select a category</div>
-                <div v-on:click="door = true; start = false; " class="categories-list">
-  
-                  <ul >
-                    <li v-for="(cat, catname, index) in categories" v-on:click="selected_category = index+1;">{{cat.category_name}}</li>
-  
-                  </ul>
-                </div>
-  
-  
-                              
-                <div v-on:click="door = true; start = true; billboard = 'State a new opinion';" class="categories-back">
-  
-                </div>
-  
-              </div>
-              <transition name="fader">
-                <div v-if="!selected_category" class="left-hatch">
-                </div>
-              </transition>
-  
-              
-              <transition name="fader">
-                <div v-if="selected_category" class="left-hatch-open">
-  
-                  
-                  <div v-on:click="newSubCategory( selected_category, add_input)" class="add-btn"></div>
-                  <input v-model="add_input" type="text" class="add-input" />
-                  <div class="top">Select</div>
-                  <div v-on:click="door = true; start = false; previous_category = selected_category; selected_category = false;" class="sub-list">
-                    
-                    <template>
-                      <ul>
-                        <li v-for="(sub, subname, index) in categories['category'+selected_category]['subcategories']" v-on:click="selected_sub = index+1">{{sub.subcategory_name}}</li>
-                      </ul>
-                    </template>
-  
-                  </div>
-  
-  
-                                
-                  <div v-on:click="door = false;  selected_category = false" class="cat-back">
-  
-                  </div>
-  
-                </div>
-              </transition>
-  
-              <transition name="fader">
-                <div v-if="!selected_sub" class="right-hatch"></div>
-              </transition>
-  
-              <transition name="fader">
-                <div v-if="selected_sub" class="right-hatch-open">
-  
-                          
-                  <div v-on:click="newSubTopic( previous_category, selected_sub, add_input)" class="add-btn"></div>
-                  <input v-model="add_input" type="text" class="add-input" />
-  
-                  <div class="top">Select</div>
-                  <div v-on:click="door = true; start = false; previous_sub = selected_sub; selected_sub = false; window = true; main = false;" class="topic-list">
-                    
-                    <template>
-                      <ul>
-                        <li v-for="(topic, subtopic, index) in categories['category'+previous_category]['subcategories']['subcategory'+selected_sub]['topics']" v-on:click="selected_topic = index+1">{{topic.subtopic_name}}</li>
-                      </ul>
-                    </template>
-  
-                  </div>
-                                
-                  <div v-on:click="selected_category = previous_category; selected_sub = false;" class="sub-back">
-  
-                  </div>
-  
-                </div>
-              </transition>
-  
-              <div v-if="leftnav || rightnav" v-on:click="defocus" class="overlay"></div>
-              
-              <div v-on:click="leftnav = !leftnav" class="lpost">
-              </div>
-  
-              <div v-on:click="rightnav = !rightnav" class="rpost">
-              </div>
-  
-            </div>
-    
-          </div>
-        </transition>
-
-      </div>
-
-      <transition name="slideleft">
-        <div v-on:click="window = false; main = true; start = true; billboard = 'Start a new opinion'" v-if="window" class="hh-window">
-          <div class="pretext">
-            <p>Chicken Ranch</p>
-            <p>Design Under Construction</p>
-          </div>
-        </div>
-      </transition>
-
-
-      <transition name="slideleft">
-        <div  v-if="leftnav" class="left-side d-block">
-
-          <div v-on:click.self="compassnav" class="compass"></div>
-          <transition name="switch">
-            <div v-on:click.self="usernav" v-if="logged" class="logged"></div>
-          </transition>
-          <transition name="switch">
-            <div v-on:click="logged = !logged;" v-if="!logged" class="notlogged"></div>  
-          </transition>
-           <div class="search"></div>
-          <div class="filter"></div>
-          <div class="sort"></div>
-          <div class="all"></div>
-  
-          <transition name="fade">
-            <div v-if="navigation == 'compass'" class="compassnav">
-              <a href="#" class="home"><span class="submenu-text">Home</span></a>
-              <a href="#" class="ranch"><span class="submenu-text">Ranch</span></a>
-              <a href="#" class="battery"><span class="submenu-text">Hen Battery</span></a>
-              <a href="#" class="about"><span class="submenu-text">About Us</span></a>
-              <a href="#" class="rules"><span class="submenu-text">Rules of The Game</span></a>
-            </div>
-          </transition>
-
-          <transition name="fade">
-            <div v-if="navigation == 'user'" class="usernav">
-              <a href="#" class="profile"><span class="submenu-text">profile</span></a>
-              <a href="#" class="chats"><span class="submenu-text">chats</span></a>
-              <a href="#" class="notifications"><span class="submenu-text">Notifications</span></a>
-              <a href="#" class="add"><span class="submenu-text">Add Opinion</span></a>
-              <a href="#" v-on:click="logged = !logged; navigation = ''" class="logoff"><span class="submenu-text">Log off</span></a>
-            </div>
-          </transition>
-          
-          <div class="popular-opinions">
-            <h4 class="text-center zoom-base-left">
-              Most Popular Opinions
-            </h4>
-            
-            <transition name="slideleft">
-              <template>
-                <div v-if="zoom_left" v-on:click.self="zoom_left = false" class="zoom_left">
-                  
-                  <div v-for="n in 2" class="zoomed">
-                    <div class="profile">
-                    </div>
-                    <div class="text">
-                      {{ opinions[zoom_start + n].opinion }}
-                    </div>
-                    <div class="gauge">
-                      <span class="agree">65</span>
-                      <span class="disagree">35</span>
-                    </div>
-                  </div>
-
-
-                  <div class="scroll">
-                    <div v-on:click="left_scrollup" v-if="scrl_up" class="up"></div>
-                    <div v-on:click="left_scrolldown" v-if="scrl_dn" class="down"></div>
-                  </div>
-
-                </div>
-              </template>
-            </transition>
-
-            <template  v-for="(value, pos) in opinions">
-              <div v-on:click="zoomin_left(value.pos) " class="list-opinion">
-                <div class="list-profile">
-                </div>
-                <div class="list-opinion-text">
-                  {{ value.opinion }} 
-                </div>
-              </div>
-            </template>
-  
-  
-          </div>
-        </div>
-      </transition>
-
-
-      <transition name="slideright">
-        <div  v-if="rightnav" class="right-side d-block">
-
-          <div class="podium"></div>
-          <div class="popular-users">
-            <h4 class="text-center zoom-base-right">
-              Most Popular Users
-            </h4>
-            
-            <transition name="slideright">
-              <template>
-                <div v-if="zoom_right" v-on:click.self="zoom_right = false" class="zoom_right">
-          
-                  <div v-for="n in 2" class="zoomed">
-                    <div class="pos">
-                      {{ users[zoom_start + n].pos }}
-                    </div>
-                    <div class="list-user">
-                      <div class="profile">
-                        <div class="username">
-                          {{ users[zoom_start + n].user }}
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no" />
+        <title>Welcome to the Henhouse!</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <link rel="stylesheet" href="assets/css/--mobile.css" />
+        <link rel="stylesheet" href="assets/css/--tablet.css" />
+        <link rel="stylesheet" href="assets/css/--hdmobile.css" />
+        <link rel="stylesheet" href="assets/css/--laptop.css" />
+        <link rel="stylesheet" href="assets/css/--xlarge.css" />
+        <link rel="stylesheet" href="assets/css/--animations.css" />
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <section>
+            <div class="bg-top"><div id="warning" class="warning-text">Portrait devices are currently unsupported, please try rotating the device!</div></div>
+        </section>
+        <section id="app">
+            <div class="container-fluid">
+                <div v-if="states.screen.main" class="container">
+                    <transition name="fader">
+                        <div class="house">
+                            <div class="middle-container">
+                                <div v-on:click="states.screen.window=true; states.screen.main=false;" class="info-btn"></div>
+                                <div class="billboard">{{strings.billboard}}</div>
+                                <transition name="fader">
+                                    <div v-if="states.object.door" class="door"><div v-if="states.object.start" v-on:click="states.object.door=false; strings.billboard='Welcome to the chickencoop! Join to debate!'" class="start">{{strings.start}}</div></div>
+                                </transition>
+                                <div v-if="!states.object.door" class="categories">
+                                    <div class="top">{{strings.category}}</div>
+                                    <div v-on:click="states.object.door=true; states.object.start=false; " class="categories-list">
+                                        <ul>
+                                            <li v-for="(cat, catname, index) in categories" v-on:click="states.values.selected_category=index+1;">{{cat.category_name}}</li>
+                                        </ul>
+                                    </div>
+                                    <div v-on:click="states.object.door=true; states.object.start=true; strings.billboard='State a new opinion';" class="categories-back"></div>
+                                </div>
+                                <transition name="fader"> <div v-if="!states.values.selected_category" class="left-hatch"></div></transition>
+                                <transition name="fader">
+                                    <div v-if="states.values.selected_category" class="left-hatch-open">
+                                        <div v-on:click="newSubCategory( states.values.selected_category, states.values.add_input)" class="add-btn"></div>
+                                        <input v-model="states.values.add_input" type="text" class="add-input" />
+                                        <div class="top">{{strings.select}}</div>
+                                        <div v-on:click="states.object.door=true; states.object.start=false; states.values.previous_category=states.values.selected_category; states.values.selected_category=false;" class="sub-list">
+                                            <template>
+                                                <ul>
+                                                    <li v-for="(sub, subname, index) in categories['category'+states.values.selected_category]['subcategories']" v-on:click="states.values.selected_sub=index+1">{{sub.subcategory_name}}</li>
+                                                </ul>
+                                            </template>
+                                        </div>
+                                        <div v-on:click="states.object.door=false; states.values.selected_category=false" class="cat-back"></div>
+                                    </div>
+                                </transition>
+                                <transition name="fader"> <div v-if="!states.values.selected_sub" class="right-hatch"></div></transition>
+                                <transition name="fader">
+                                    <div v-if="states.values.selected_sub" class="right-hatch-open">
+                                        <div v-on:click="newSubTopic( states.values.previous_category, states.values.selected_sub, states.values.add_input)" class="add-btn"></div>
+                                        <input v-model="states.values.add_input" type="text" class="add-input" />
+                                        <div class="top">{{strings.select}}</div>
+                                        <div v-on:click="states.object.door=true; states.object.start=false; states.values.previous_sub=states.values.selected_sub; states.values.selected_sub=false; states.screen.window=true; states.screen.main=false;" class="topic-list">
+                                            <template>
+                                                <ul>
+                                                    <li v-for="(topic, subtopic, index) in categories['category'+states.values.previous_category]['subcategories']['subcategory'+states.values.selected_sub]['topics']" v-on:click="states.values.selected_topic=index+1">
+                                                        {{topic.subtopic_name}}
+                                                    </li>
+                                                </ul>
+                                            </template>
+                                        </div>
+                                        <div v-on:click="states.values.selected_category=states.values.previous_category; states.values.selected_sub=false;" class="sub-back"></div>
+                                    </div>
+                                </transition>
+                                <div v-if="states.screen.leftnav || states.screen.rightnav" v-on:click="defocus();" class="overlay"></div>
+                                <div v-on:click="states.screen.leftnav=!states.screen.leftnav" class="lpost"></div>
+                                <div v-on:click="states.screen.rightnav=!states.screen.rightnav" class="rpost"></div>
+                            </div>
                         </div>
-                        <div v-if="users[zoom_start + n].badge" class="badge"></div>
-                        <div v-if="users[zoom_start + n].medal" class="medal"></div>
-                      </div>
-                      <div class="counter">
-                        <div class="number">
-                          {{ users[zoom_start + n].votes }}
+                    </transition>
+                </div>
+                <transition name="slideleft">
+                    <div v-on:click="states.screen.window=false; states.screen.main=true; states.object.start=true; strings.billboard='Start a new opinion'" v-if="states.screen.window" class="hh-window">
+                        <div class="pretext">
+                            <p>{{strings.windowTitle}}</p>
+                            <p>{{strings.windowContext}}</p>
                         </div>
-                      </div>
-                      <div class="member"> 
-                        Member since {{ users[zoom_start + n].date }}
-                      </div>
                     </div>
-        
-                  </div>
-                  
-                  <div class="scroll">
-                    <div v-on:click="right_scrollup" v-if="scrl_up" class="scrollup"></div>
-                    <div v-on:click="right_scrolldown" v-if="scrl_dn" class="scrolldown"></div>
-                  </div>
-        
-                </div>
-              </template>
-            </transition>
-
-            <template>
-              <div v-for="(value, user) in users" v-on:click="zoomin_right(value.pos)" class="list-users">
-                <div class="list-users-pos">
-                  {{ value.pos }}
-                </div>
-                <div class="list-users-profile">
-                </div>
-                <div class="list-users-text">
-                  {{ value.user }}
-                </div>
-              </div>
-            </template>
-  
-  
-          </div>
-        </div>
-      </transition>
-
-
-    </div>
-    
-  </section>
-  <script src="assets/js/main.js"></script>
-
-</body>
+                </transition>
+                <transition name="slideleft">
+                    <div v-if="states.screen.leftnav" class="left-side d-block">
+                        <div v-on:click.self="compassnav" class="compass"></div>
+                        <transition name="switch"> <div v-on:click.self="usernav" v-if="states.object.logged" class="logged"></div></transition>
+                        <transition name="switch"> <div v-on:click="states.object.logged=!states.object.logged;" v-if="!states.object.logged" class="notlogged"></div></transition>
+                        <div class="search"></div>
+                        <div class="filter"></div>
+                        <div class="sort"></div>
+                        <div class="all"></div>
+                        <transition name="fade">
+                            <div v-if="states.values.navigation=='compass'" class="compassnav">
+                                <a href="#" class="home"><span class="submenu-text">{{strings.menu.compass.home}}</span></a> <a href="#" class="ranch"><span class="submenu-text">{{strings.menu.compass.ranch}}</span></a>
+                                <a href="#" class="battery"><span class="submenu-text">{{strings.menu.compass.battery}}</span></a> <a href="#" class="about"><span class="submenu-text">{{strings.menu.compass.about}}</span></a>
+                                <a href="#" class="rules"><span class="submenu-text">{{strings.menu.compass.rules}}</span></a>
+                            </div>
+                        </transition>
+                        <transition name="fade">
+                            <div v-if="states.values.navigation=='user'" class="usernav">
+                                <a href="#" class="profile"><span class="submenu-text">{{strings.menu.user.profile}}</span></a> <a href="#" class="chats"><span class="submenu-text">{{strings.menu.user.chats}}</span></a>
+                                <a href="#" class="notifications"><span class="submenu-text">{{strings.menu.user.notifications}}</span></a> <a href="#" class="add"><span class="submenu-text">{{strings.menu.user.opinion}}</span></a>
+                                <a href="#" v-on:click="states.object.logged=!states.object.logged; states.values.navigation=''" class="logoff"><span class="submenu-text">{{strings.menu.user.logoff}}</span></a>
+                            </div>
+                        </transition>
+                        <div class="popular-opinions">
+                            <h4 class="text-center zoom-base-left">{{strings.sides.opinions}}</h4>
+                            <transition name="slideleft">
+                                <template>
+                                    <div v-if="states.object.zoom_left" v-on:click.self="zoom_left=false" class="zoom_left">
+                                        <div v-for="n in 2" class="zoomed">
+                                            <div class="profile"></div>
+                                            <div class="text">{{opinions[states.values.zoom_start + n].opinion}}</div>
+                                            <div class="gauge"><span class="agree">65</span> <span class="disagree">35</span></div>
+                                        </div>
+                                        <div class="scroll">
+                                            <div v-on:click="left_scrollup" v-if="states.object.scrl_up" class="up"></div>
+                                            <div v-on:click="left_scrolldown" v-if="states.object.scrl_dn" class="down"></div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </transition>
+                            <template v-for="(value, pos) in opinions">
+                                <div v-on:click="zoomin_left(value.pos) " class="list-opinion">
+                                    <div class="list-profile"></div>
+                                    <div class="list-opinion-text">{{value.opinion}}</div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </transition>
+                <transition name="slideright">
+                    <div v-if="states.screen.rightnav" class="right-side d-block">
+                        <div class="podium"></div>
+                        <div class="popular-users">
+                            <h4 class="text-center zoom-base-right">{{strings.sides.users}}</h4>
+                            <transition name="slideright">
+                                <template>
+                                    <div v-if="states.object.zoom_right" v-on:click.self="states.object.zoom_right=false" class="zoom_right">
+                                        <div v-for="n in 2" class="zoomed">
+                                            <div class="pos">{{users[states.values.zoom_start + n].pos}}</div>
+                                            <div class="list-user">
+                                                <div class="profile">
+                                                    <div class="username">{{users[states.values.zoom_start + n].user}}</div>
+                                                    <div v-if="users[states.values.zoom_start + n].badge" class="badge"></div>
+                                                    <div v-if="users[states.values.zoom_start + n].medal" class="medal"></div>
+                                                </div>
+                                                <div class="counter"><div class="number">{{users[states.values.zoom_start + n].votes}}</div></div>
+                                                <div class="member">Member since{{users[states.values.zoom_start + n].date}}</div>
+                                            </div>
+                                        </div>
+                                        <div class="scroll">
+                                            <div v-on:click="right_scrollup" v-if="states.object.scrl_up" class="scrollup"></div>
+                                            <div v-on:click="right_scrolldown" v-if="states.object.scrl_dn" class="scrolldown"></div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </transition>
+                            <template>
+                                <div v-for="(value, user) in users" v-on:click="zoomin_right(value.pos)" class="list-users">
+                                    <div class="list-users-pos">{{value.pos}}</div>
+                                    <div class="list-users-profile"></div>
+                                    <div class="list-users-text">{{value.user}}</div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </transition>
+            </div>
+        </section>
+        <script src="assets/js/main.js"></script>
+    </body>
 </html>

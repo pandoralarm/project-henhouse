@@ -45,6 +45,11 @@
   src: url(../font/komika-regular.woff) format('woff');
 }
 
+html {
+  width: 100%;
+  height: 100%;
+}
+
 body {
   background: #71953E;
   font-family: "komika";
@@ -78,6 +83,7 @@ li {
   font-size: 2vh;
   font-weight: bold;
 }
+
 li:before {
   content: ">"; /* Change anything to be used as precursor */
   display: inline-block;
@@ -129,7 +135,6 @@ li:before {
   z-index: -4900;
 }
 
-
 .overlay{
   /* 
     THIS OVERLAY IS USED AS A TRIGGER TO CLOSE POPULAR OPINIONS
@@ -143,8 +148,6 @@ li:before {
   height: 100vh;
   z-index: 2100;
 }
-
-
 
 .door { 
   background: url('../images/objects/door.png') no-repeat center top;
@@ -239,7 +242,6 @@ li:before {
   transition: color .3s ease;
 }
 
-
 .cat-back {
   background: url('../images/objects/back-btn.png') no-repeat center top;
   background-size: contain;
@@ -250,7 +252,6 @@ li:before {
   filter: drop-shadow(0 0 0.75rem white);
   cursor: pointer;
 }
-
 
 
 /* RIGHT HATCH */
@@ -408,7 +409,6 @@ li:before {
   border-radius: 8px;
   border: groove 2px black;
 }
-
 
 .list-opinion{
   background-color: #F1F4C6;
@@ -678,4 +678,3 @@ li:before {
   background: url('../images/objects/zoom/scrolldown.png') no-repeat center top;
   background-size: contain;
 }
-

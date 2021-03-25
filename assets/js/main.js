@@ -1,32 +1,74 @@
 var app = new Vue({
   el: '#app',
   data: {
-    render: true,
-    main: true,
-    window: false,
-    door: true,
-    leftnav: false,
-    navigation: '',
-    rightnav: false,
-    start: true,
-    selected_category: false,
-    selected_sub: false,
-    selected_topic: false,
-    previous_category: false,
-    previous_sub: false,
-    logged: false,
-    zoom_left: false,
-    zoom_right: false,
-    selected_pos: 0,
-    scrl_up: true,
-    scrl_dn: true,
-    zoom_start: 0,
-    zoom_end: 1,
-    billboard: "State a new opinion",
-    image: 'assets',
-    add_input: '',
+    // CONTAINS APPLICATION STATES
+    states: {
+      screen : {
+        render: true,
+        main: true,
+        window: false,
+        leftnav: false,
+        rightnav: false,
+      },
+      object : {
+        door: true,
+        start: true,
+        logged: false,
+        zoom_left: false,
+        zoom_right: false,
+        scrl_up: true,
+        scrl_dn: true,
+      },
+      values : {
+        navigation: '',
+        selected_category: false,
+        selected_sub: false,
+        selected_topic: false,
+        previous_category: false,
+        previous_sub: false,
+        selected_pos: 0,
+        zoom_start: 0,
+        zoom_end: 1,
+        add_input: '',
+      }
+    },
+   
+    // CONTAINS STRINGS TO DISPLAY, MADE FOR LANGUAGE SUPPORT
+    strings : {
+      billboard: "State a new opinion",
+      image: 'assets',
+      start: 'START',
+      category: 'Select A Category',
+      select: 'select',
+      windowTitle: 'Chicken Ranch',
+      windowContext: 'Design under construction',
+      menu : {
+        compass : {
+          home: 'Home',
+          battery: 'Hen Battery',
+          rules: 'Rulse of The Game',
+          ranch: 'Ranch',
+          about: 'About',
+        },
+        user: {
+          profile: 'Profile',
+          notifications: 'Notifications',
+          chats: 'Chats',
+          opinion: 'Add Opinion',
+          logoff: 'Log off',
+                    
+        },
+      },
 
+      sides: {
+        opinions: 'Most Popular Opinions',
+        users: 'Most Popular Users',
+      },
 
+    },
+
+  
+    // DISPLAYED CATEGORIES, SUBS, AND TOPICS. 
     categories: {
       category1: { category_name : 'Sports, Games, Recreational',
                   subcategories : { 
@@ -122,8 +164,7 @@ var app = new Vue({
                     },
       },
     },
-
-  
+    //POPULAR OPINIONS
     opinions: [
       {
         pos: 1,
@@ -156,7 +197,7 @@ var app = new Vue({
         disagree: 35,
       },
     ],
-
+    //POPULAR USERS
     users: [
     {
       pos: 1,
@@ -182,50 +223,55 @@ var app = new Vue({
       badge: false,
       date: '22-05-2020',
     }
-  ],
+    ],
 
   },
 
   methods: {
+    // DEFOCUS ANY FOCUSED WINDOW OR NAV
     defocus(){
       /* RESETS THE STATE OF SIDEBARS AND ZOOM POSITIONS */
-      this.zoom_left = false; 
-      this.zoom_right = false; 
-      this.leftnav = false;  
-      this.rightnav = false;
+      this.states.object.zoom_left = false; 
+      this.states.object.zoom_right = false; 
+      this.states.screen.leftnav = false;  
+      this.states.screen.rightnav = false;
 
-      this.selected_pos = 0;
+      this.states.values.selected_pos = 0;
     },
+
+    // DISABLES BUTTON FOR EACH NAV IF REACHES BOTTOM LIST
     checkPosLeft(){
       /* DISABLES THE SCROLL UP OR DOWN BOTTOM ON ZOOM WINDOW */
-      console.log(this.selected_pos);
+      console.log(this.states.values.selected_pos);
       console.log(this.opinions.length);
-      if (this.selected_pos == 1){
-        this.scrl_up = false;
-        this.scrl_dn = true;
-      } else if (this.selected_pos == this.opinions.length-1) {
-        this.scrl_up = true;
-        this.scrl_dn = false;
+      if (this.states.values.selected_pos == 1){
+        this.states.object.scrl_up = false;
+        this.states.object.scrl_dn = true;
+      } else if (this.states.values.selected_pos == this.opinions.length-1) {
+        this.states.object.scrl_up = true;
+        this.states.object.scrl_dn = false;
       } else {
-        this.scrl_up = true;
-        this.scrl_dn = true;
+        this.states.object.scrl_up = true;
+        this.states.object.scrl_dn = true;
       }
     },
     checkPosRight(){
       /* DISABLES THE SCROLL UP OR DOWN BOTTOM ON ZOOM WINDOW */
-      console.log(this.selected_pos);
+      console.log(this.states.values.selected_pos);
       console.log(this.opinions.length);
-      if (this.selected_pos == 1){
-        this.scrl_up = false;
-        this.scrl_dn = true;
-      } else if (this.selected_pos == this.users.length-1) {
-        this.scrl_up = true;
-        this.scrl_dn = false;
+      if (this.states.values.selected_pos == 1){
+        this.states.object.scrl_up = false;
+        this.states.object.scrl_dn = true;
+      } else if (this.states.values.selected_pos == this.users.length-1) {
+        this.states.object.scrl_up = true;
+        this.states.object.scrl_dn = false;
       } else {
-        this.scrl_up = true;
-        this.scrl_dn = true;
+        this.states.object.scrl_up = true;
+        this.states.object.scrl_dn = true;
       }
     },
+
+    //OPENS ZOOM WINDOW
     zoomin_left(n) {
 
       /* 
@@ -239,11 +285,11 @@ var app = new Vue({
               THE LAST INDEX, IT WILL MOVE BUT THE DATA WONT BE
               DISPLAYED DUE TO UNAVAILABLE INDEX
       */
-      current = this.selected_pos;
-      this.selected_pos = n;
-      this.zoom_start = this.selected_pos-2;
-      this.zoom_end = this.selected_pos-1;
-      this.zoom_left = true;
+      current = this.states.values.selected_pos;
+      this.states.values.selected_pos = n;
+      this.states.values.zoom_start = this.states.values.selected_pos-2;
+      this.states.values.zoom_end = this.states.values.selected_pos-1;
+      this.states.object.zoom_left = true;
 
       /* 
         THIS BLOCK IS WHAT MOVES THE ZOOM WINDOW
@@ -259,7 +305,7 @@ var app = new Vue({
       */
       base = .14*$(window).height();
       interval = 0.05*$(window).height();
-      target = parseInt(base + ( interval * (this.selected_pos - 1)));
+      target = parseInt(base + ( interval * (this.states.values.selected_pos - 1)));
 
       /* 
         IF CONDITION IS USED HERE IS USED TO DETERMINE WHEN
@@ -279,7 +325,6 @@ var app = new Vue({
       this.checkPosLeft();
      
     },
-
     zoomin_right(n) {
 
       /* 
@@ -293,11 +338,11 @@ var app = new Vue({
               THE LAST INDEX, IT WILL MOVE BUT THE DATA WONT BE
               DISPLAYED DUE TO UNAVAILABLE INDEX
       */
-     current = this.selected_pos;
-     this.selected_pos = n;
-     this.zoom_start = this.selected_pos-2;
-     this.zoom_end = this.selected_pos-1;
-     this.zoom_right = true;
+     current = this.states.values.selected_pos;
+     this.states.values.selected_pos = n;
+     this.states.values.zoom_start = this.states.values.selected_pos-2;
+     this.states.values.zoom_end = this.states.values.selected_pos-1;
+     this.states.object.zoom_right = true;
 
      /* 
        THIS BLOCK IS WHAT MOVES THE ZOOM WINDOW
@@ -313,7 +358,7 @@ var app = new Vue({
      */
      base = .14*$(window).height();
      interval = 0.05*$(window).height();
-     target = parseInt(base + ( interval * (this.selected_pos - 1)));
+     target = parseInt(base + ( interval * (this.states.values.selected_pos - 1)));
 
       /* 
         IF CONDITION IS USED HERE IS USED TO DETERMINE WHEN
@@ -334,72 +379,83 @@ var app = new Vue({
 
     },
 
+    //SCROLL TRIGGERS FOR LEFT
     left_scrollup() {
       /* SENDS SELECTED POSITION FROM SCROLL TO ZOOM WINDOW */
-      this.zoomin_left(this.selected_pos -1);
+      this.zoomin_left(this.states.values.selected_pos -1);
       this.checkPosLeft();
     },
-
     left_scrolldown() {
       /* SENDS SELECTED POSITION FROM SCROLL TO ZOOM WINDOW */
-      this.zoomin_left(this.selected_pos +1);
+      this.zoomin_left(this.states.values.selected_pos +1);
       this.checkPosLeft();
      },
 
+    //SCROLL TRIGGERS FOR RIGHT
     right_scrollup() {
       /* SENDS SELECTED POSITION FROM SCROLL TO ZOOM WINDOW */
-      this.zoomin_right(this.selected_pos -1);
+      this.zoomin_right(this.states.values.selected_pos -1);
       this.checkPosRight();
     },
-
     right_scrolldown() {
       /* SENDS SELECTED POSITION FROM SCROLL TO ZOOM WINDOW */
-      this.zoomin_right(this.selected_pos +1);
+      this.zoomin_right(this.states.values.selected_pos +1);
       this.checkPosRight();
     },
+
+    //OPENS COMPASS NAVIGATION
     compassnav() {
       /* CONSTRATNT DUE TO MENU CAN ONLY OPEN ONE AT A TIME */
-      if (this.navigation) {
-        this.navigation = '';
+      if (this.states.values.navigation) {
+        this.states.values.navigation = '';
       } else {
-        this.navigation = 'compass';
+        this.states.values.navigation = 'compass';
       }
     },
+
+    //OPENS USER NAVIGATION
     usernav() {
       /* CONSTRATNT DUE TO MENU CAN ONLY OPEN ONE AT A TIME */
-      if (this.navigation) {
-        this.navigation = '';
+      if (this.states.values.navigation) {
+        this.states.values.navigation = '';
       } else {
-        this.navigation = 'user';
+        this.states.values.navigation = 'user';
       }
     },
+
+    // ADDS NEW SUBS AND OR TOPICS
     newSubCategory(category_position, category_name){
-      sublength = Object.keys(this.categories["category1"]["subcategories"]).length;
-      this.categories['category'+category_position]
-                     ['subcategories']
-                     ['subcategory'+(sublength+1)] 
-                     = {subcategory_name: category_name, topics : {}};
-      this.door = false;  
-      this.previous_category = this.selected_category;
-      this.selected_category = false;
-      this.door = true;  
-      this.selected_category = this.previous_category;
-      this.add_input = '';
+      if (this.states.values.add_input != ''){
+        sublength = Object.keys(this.categories["category1"]["subcategories"]).length;
+        this.categories['category'+category_position]
+                       ['subcategories']
+                       ['subcategory'+(sublength+1)] 
+                       = {subcategory_name: category_name, topics : {}};
+        this.states.object.door = false;  
+        this.states.values.previous_category = this.states.values.selected_category;
+        this.states.values.selected_category = false;
+        this.states.object.door = true;  
+        this.states.values.selected_category = this.states.values.previous_category;
+        this.states.values.add_input = '';
+      }
+      
     },
     newSubTopic(category_position, subcategory_position, subtopic_name){
-      sublength = Object.keys(this.categories["category"+category_position]
-                  ["subcategories"]["subcategory"+subcategory_position]["topics"]).length;
-      this.categories['category'+category_position]
-                     ['subcategories']
-                     ['subcategory'+subcategory_position]
-                     ['topics']
-                     ['topic'+(sublength+1)]
-                     = {subtopic_name: subtopic_name};
+      if (this.states.values.add_input != ''){
+        sublength = Object.keys(this.categories["category"+category_position]
+                    ["subcategories"]["subcategory"+subcategory_position]["topics"]).length;
+        this.categories['category'+category_position]
+                      ['subcategories']
+                      ['subcategory'+subcategory_position]
+                      ['topics']
+                      ['topic'+(sublength+1)]
+                      = {subtopic_name: subtopic_name};
 
-      this.previous_sub = this.selected_sub;
-      this.selected_sub = false;
-      this.selected_sub = this.previous_sub;
-      this.add_input = '';
+        this.states.values.previous_sub = this.states.values.selected_sub;
+        this.states.values.selected_sub = false;
+        this.states.values.selected_sub = this.states.values.previous_sub;
+        this.states.values.add_input = '';
+      }
     }
   }
 })
